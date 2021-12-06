@@ -8,9 +8,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "babel-loader": "^8.2.3",
+    "babel-plugin-inline-react-svg": "^2.0.1",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-styled-components": "^2.0.2",
+    "babel-preset-react": "^6.24.1",
     "next": "12.0.4",
+    "next-images": "^1.8.4",
+    "node-fetch": "^3.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "save": "^2.4.0",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "eslint": "7",
