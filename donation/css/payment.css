@@ -1,0 +1,338 @@
+.hero-banner-area {
+    height: 65vh;
+}
+
+.hero-banner-area .hero-banner-area-text {
+    width: 50%;
+    font-size: var(--font-reg);
+    line-height: 40px;
+}
+
+.hero-banner-area .hero-banner-area-text span {
+    font-size: var(--mfont-reg);
+}
+
+.hero-banner-area .hero-banner-area-text h2 {
+    margin-bottom: 2rem;
+}
+
+.hero-banner-area .hero-banner-area-text span::after {
+    height: 0.12rem;
+    width: 200%;
+}
+
+.content h3 {
+    font-style: normal;
+    font-weight: 800;
+    font-size: var(--mfont-mini);
+    /* line-height: 41px; */
+    color: #000000;
+}
+
+form {
+    margin-top: 1.5rem;
+    margin-bottom: 10rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.row.w-100 {
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.row.w-100 label {
+    font-style: normal;
+    font-weight: 600;
+    font-size: var(--font-norm);
+    line-height: 41px;
+    /* identical to box height */
+    color: #000000;
+}
+
+select {
+    background: #e3e3e7;
+    border: 0;
+    padding: 0 1.3rem;
+    outline: 0;
+    margin-left: 2rem;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.input:last-of-type {
+    justify-content: center;
+}
+
+.input input {
+    background: #f1f1f1;
+    padding: 1rem 2rem;
+    border: 0;
+    outline: 0;
+}
+
+.input.col:first-of-type {
+    width: 35%;
+}
+
+.payment.row {
+    border: 0.5px solid #d7d7d7;
+}
+
+.mr-2 {
+    margin-right: 2rem;
+}
+
+.payment.row span span {
+    margin-left: 0.5rem;
+}
+
+.span-first {
+    padding: 0.5rem 1rem;
+    padding-right: 0.1rem;
+}
+
+.span-last {
+    background: #f1f1f1;
+    padding: 0.5rem 1rem;
+}
+
+.btn-container button {
+    float: right;
+    background: #000000;
+    border-radius: 7px;
+    padding: 0.5rem 3.5rem;
+    border: 0;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-container button span {
+    color: #fff;
+    margin-left: 1rem;
+}
+
+.modal {
+    position: fixed;
+    width: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #000;
+    padding: 2rem 3rem;
+    z-index: 4;
+    display: none;
+}
+
+.modal .payment {
+    border: 0.5px solid #d7d7d7;
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--mfont-reg);
+    display: flex;
+    color: #000000;
+}
+
+.modal .payment span {
+    padding: 0.2rem 0.4rem;
+}
+
+.modal .payment span:last-of-type {
+    background-color: #d7d7d7;
+    height: 100%;
+}
+
+.modal .fa-times {
+    font-size: var(--font-mini);
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.modal header {
+    margin-bottom: 2rem;
+}
+
+.modal h3 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-reg);
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 0.7rem;
+    margin-top: 2rem;
+}
+
+.modal .input,
+.modal .input label {
+    display: flex;
+    align-items: center;
+    font-size: var(--mfont-reg);
+}
+
+.modal .radio--container .input .custom-radio {
+    width: 15px;
+    height: 15px;
+    background: #c4c4c4;
+    border-radius: 50%;
+    margin-right: 0.6rem;
+    position: relative;
+}
+
+.input label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #6c6c6c;
+    cursor: pointer;
+}
+
+.modal .radio--container .input input:checked~label .custom-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #000000;
+    border-radius: 50%;
+}
+
+.modal .radio--container .input input {
+    display: none;
+}
+
+.form-info.row {
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.form-info .input,
+.email-input {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: center;
+}
+
+.form-info .input:not(:last-of-type) {
+    margin-right: 2rem;
+}
+
+.email-input {
+    align-items: flex-start !important;
+}
+
+.form-info input,
+.email-input input {
+    background: #f1f1f1;
+    border: 0;
+    outline: 0;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    margin-top: 0.3rem;
+}
+
+.form-info label,
+.email-input label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--mfont-reg);
+    line-height: 25px;
+    color: #6c6c6c;
+    align-self: flex-start;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.6;
+    z-index: 2;
+    display: none;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-2 .payment {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000000;
+    font-size: var(--mfont-reg);
+}
+
+.mt-2 .payment span {
+    padding: 0.2rem 0.6rem;
+}
+
+#success__modal {
+    display: none;
+}
+
+.success__modal .image {
+    width: 8rem;
+    height: 8rem;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.success__modal h5 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-mini);
+    line-height: 34px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 1rem;
+}
+
+.success__modal p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--font-norm);
+    line-height: 27px;
+    text-align: center;
+    color: #6c6c6c;
+}
+
+.success__modal .btn-container button {
+    margin: auto;
+    padding: 0.8rem 4rem;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.justify-flex-end {
+    justify-content: flex-end;
+}
+
+.row.justify-flex-end {
+    margin-bottom: 1rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}

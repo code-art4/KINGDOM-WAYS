@@ -1,0 +1,157 @@
+.hero-banner-area {
+    width: 100vw;
+    height: 50vh !important;
+    position: relative;
+}
+
+.hero-banner-area-text {
+    font-size: var(--font-reg) !important;
+}
+
+.hero-content h3 {
+    font-style: normal;
+    font-weight: 800;
+    font-size: var(--font-mini);
+    text-align: center;
+    line-height: 54px;
+    color: #000000;
+    margin-bottom: 3rem;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.row .col:first-of-type {
+    margin-right: 5rem;
+}
+
+.profile .image {
+    width: 17rem;
+    height: 15rem;
+}
+
+.profile-info {
+    text-align: center;
+    background: #77b6d5;
+    padding: 0.7rem 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-norm);
+    line-height: 27px;
+    color: #000000;
+}
+
+.profile-info p {
+    margin-top: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--mfont-reg);
+    line-height: 22px;
+    color: #000000;
+}
+
+.profile-content {
+    background: #ffffff;
+    position: relative;
+    padding: 3rem;
+    font-style: italic;
+    font-weight: normal;
+    font-size: var(--mfont-reg);
+    line-height: 27px;
+    color: #000000;
+}
+
+.profile-content span:not(:last-of-type) {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.shadow {
+    box-shadow: 0px 4px 20px rgba(119, 182, 213, 0.5);
+}
+
+.card {
+    background: #e7e8ea;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1rem 4rem;
+    text-align: center;
+}
+
+.card:not(:last-of-type) {
+    margin-bottom: 1rem;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.first-card {
+    width: 50%;
+}
+
+.card .image {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.mt-4 {
+    margin-top: 4rem;
+}
+
+.row-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.inline {
+    display: inline-block;
+}
+
+ul.inline {
+    margin-top: 1rem;
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--mfont-reg);
+    line-height: 27px;
+    color: #6c6c6c;
+    margin-left: 1.4rem;
+}
+
+.w-90 {
+    width: 90% !important;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-center .image,
+.align-center p,
+.align-center .inline {
+    margin: 0;
+    justify-content: flex-start !important;
+}
+
+.align-center p,
+.align-center .inline {
+    margin-left: 2rem;
+}
+
+.justify-start {
+    justify-content: flex-start !important;
+}
+
+.map.image {
+    width: 100%;
+    height: auto;
+}
+
+.map {
+    margin-bottom: 5rem;
+}
