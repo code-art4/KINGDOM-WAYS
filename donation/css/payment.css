@@ -336,3 +336,96 @@ select {
 .mt-2 {
     margin-top: 2rem;
 }
+
+@media screen and (max-width: 1250px) {
+    .payment .modal {
+        width: 50%;
+    }
+    .donate .form-info.row {
+        justify-content: flex-start;
+    }
+    .donate .form-info.row .input:first-of-type {
+        margin-right: 4rem;
+    }
+    .radio--container {
+        justify-content: flex-start;
+    }
+    .radio--container .input {
+        margin-right: 2rem;
+    }
+    .form-info.row {
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .payment .modal {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .hero-banner-area .hero-banner-area-text {
+        line-height: 30px;
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .payment .modal {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .payment .modal {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hero-banner-area .hero-banner-area-text {
+        width: 90vw;
+        line-height: 20px;
+    }
+    select {
+        margin-left: 0;
+        padding: 1rem 2rem;
+    }
+    .input.col {
+        width: 100% !important;
+    }
+    .payment.row,
+    .span-last {
+        flex-direction: row;
+    }
+    .input.col:last-of-type {
+        width: max-content !important;
+    }
+    .mr-2 {
+        margin-right: 1rem;
+    }
+    .payment .content h3 {
+        line-height: 25px;
+    }
+    .modal .row {
+        flex-direction: row;
+    }
+    .modal .form-info.row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .modal .form-info.row .input:first-of-type {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .payment .modal {
+        width: 90%;
+    }
+    .radio--container {
+        flex-direction: column !important;
+        align-items: flex-start;
+    }
+}

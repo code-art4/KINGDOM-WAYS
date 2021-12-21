@@ -2,9 +2,16 @@
     height: 70vh !important;
 }
 
+.hero-banner-area {
+    width: 100vw;
+    height: 50vh !important;
+    position: relative;
+    margin-top: 0.5rem;
+}
+
 .hero-banner-area-text {
     width: 50% !important;
-    font-size: var(--font-mini) !important;
+    font-size: var(--font-reg) !important;
 }
 
 .hero-content h3 {
@@ -108,8 +115,8 @@
 }
 
 .row.location .col .row .image {
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
     margin-right: 1rem;
 }
 
@@ -150,4 +157,70 @@
     /* height: 10%; */
     /* background: #000000; */
     border: 1px solid #000000;
+}
+
+@media screen and (max-width: 1350px) {
+    .row.location .col .row:first-of-type .image {
+        width: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .row.location .col .row:first-of-type .image {
+        width: 2rem !important;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .row.location .col {
+        padding-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .row.location .col .row:first-of-type .image {
+        width: 2rem;
+    }
+    .row.location .col {
+        padding-right: 2rem;
+    }
+    .hero-content .row {
+        width: 50%;
+    }
+    .hero-banner-area .hero-banner-area-text h2 {
+        line-height: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content .row.align-center,
+    .row.location .col .row,
+    form .row {
+        flex-direction: row !important;
+    }
+    .row.location .col {
+        width: 100%;
+        padding-right: 0;
+    }
+    .row.location .col .row:first-of-type .image {
+        width: 1.1rem !important;
+    }
+    .hero-content .row {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .hero-banner-area .hero-banner-area-text {
+        width: 80vw !important;
+    }
+    .row.location .col .row:first-of-type .image {
+        width: 1.4rem !important;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .row.location .col .row:first-of-type .image {
+        width: 1.7rem !important;
+    }
 }

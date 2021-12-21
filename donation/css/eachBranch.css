@@ -58,7 +58,7 @@
     font-style: italic;
     font-weight: normal;
     font-size: var(--mfont-reg);
-    line-height: 27px;
+    line-height: 20px;
     color: #000000;
 }
 
@@ -140,6 +140,10 @@ ul.inline {
 
 .align-center p,
 .align-center .inline {
+    margin-left: 1rem;
+}
+
+.align-center .inline:last-of-type {
     margin-left: 2rem;
 }
 
@@ -154,4 +158,116 @@ ul.inline {
 
 .map {
     margin-bottom: 5rem;
+}
+
+.cards {
+    padding: 1rem 2rem;
+}
+
+.hero-content p {
+    line-height: 20px;
+}
+
+@media screen and (max-width: 980px) {
+    .flex-column-sm {
+        flex-direction: column;
+    }
+    .flex-column-sm.row .col:first-of-type {
+        margin-right: 0;
+    }
+    .card,
+    .flex-column-sm .w-50 {
+        width: 80%;
+    }
+    .flex-column-sm .w-50 .image {
+        margin-right: 1rem;
+    }
+    .profile-content span:not(:last-of-type) {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .row {
+        flex-direction: column;
+    }
+    .profile {
+        margin-bottom: 2rem;
+    }
+    .row .col:first-of-type {
+        margin-right: 0;
+        width: 50%;
+    }
+    .profile .image {
+        width: 100%;
+        height: 20rem;
+    }
+    .profile-content {
+        width: 80%;
+    }
+    .card.row {
+        flex-direction: row;
+    }
+    .card,
+    .flex-column-sm .w-50,
+    .flex-column-sm .col.card.first-card {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .card,
+    .flex-column-sm .w-50,
+    .flex-column-sm .col.card.first-card {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .card,
+    .flex-column-sm .w-50,
+    .flex-column-sm .col.card.first-card {
+        width: 90%;
+    }
+    .hero-content .row .col {
+        width: 90%;
+    }
+    .hero-content h3 {
+        margin-bottom: 1rem;
+    }
+    .profile-content {
+        width: 90% !important;
+    }
+    .card {
+        padding: 1rem 2rem;
+    }
+    .card.row {
+        flex-direction: column;
+        padding: 1rem 2rem;
+    }
+    .card.row .image {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+        margin-top: 1rem;
+    }
+    .card.row span {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: auto;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 373px) {
+    .hero-banner-area .hero-banner-area-text {
+        width: 90vw !important;
+    }
+    .hero-content .row .col {
+        width: 100% !important;
+    }
+    .col:not(:last-of-type) {
+        margin-bottom: 1rem;
+        width: 100% !important;
+    }
 }

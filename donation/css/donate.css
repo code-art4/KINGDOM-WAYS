@@ -196,8 +196,9 @@ section h3 {
     font-style: normal;
     font-weight: bold;
     font-size: var(--font-mini);
-    line-height: 41px;
+    /* line-height: 41px; */
     color: #000000;
+    margin-bottom: 1rem;
 }
 
 .latest-donation h6 {
@@ -424,4 +425,164 @@ section h3 {
 .success__modal .btn-container button {
     margin: auto;
     padding: 0.8rem 4rem;
+}
+
+@media screen and (max-width: 1350px) {
+    .donate .project {
+        margin: 0;
+        margin-top: 2.5rem;
+        width: 88%;
+    }
+    .donate .project img {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .donate .modal {
+        width: 60%;
+    }
+    .donate .form-info.row {
+        justify-content: flex-start;
+    }
+    .donate .form-info.row .input:first-of-type {
+        margin-right: 4rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .donate .content .row {
+        flex-direction: column;
+    }
+    .donate .content .row .col {
+        width: 95%;
+        margin: auto;
+    }
+    .donate .content .row .col.main-content {
+        margin-top: 2rem;
+        padding: 0;
+    }
+    .donate .project.row {
+        flex-direction: row;
+    }
+    .donate .project img {
+        width: 9rem;
+        height: 9rem;
+    }
+    .donate .latest-donation {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+    .donate .latest-donation .col {
+        width: 100%;
+    }
+    .donate .latest-donation .col .image {
+        width: 20rem;
+        height: auto;
+    }
+    .donate .latest-donation .col:first-of-type {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .donate .project {
+        margin: 0;
+        margin-top: 2.5rem;
+        width: 100%;
+    }
+    .donate .project img {
+        width: 9rem;
+        height: 9rem;
+    }
+    .donate .col.main-content p {
+        line-height: 20px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .donate .modal {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .donate .project_container {
+        display: none;
+    }
+    .donate .modal {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .donate .latest-donation .row,
+    .donate .modal .row {
+        flex-direction: row;
+    }
+    .donate .latest-donation .col .image {
+        width: 15rem;
+    }
+    .donate .row.form-info {
+        flex-direction: column;
+    }
+    .donate .form-info {
+        align-items: flex-start;
+    }
+    .donate .form-info .input:first-of-type {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .donate .btn-container {
+        flex-direction: column;
+    }
+    .donate .btn-container button:first-of-type {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .donate .btn-container button:last-of-type {
+        padding: 1rem 5rem;
+    }
+    .donate .radio--container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .donate .modal .btn-container button:last-of-type {
+        padding: 0.5rem 5rem;
+    }
+    .donate .modal {
+        padding: 2rem;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .donate .btn-container {
+        flex-direction: column;
+    }
+    .donate .btn-container button:first-of-type {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .donate .btn-container button:last-of-type {
+        padding: 1rem 5rem;
+    }
+    .donate .latest-donation .col.row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .donate .latest-donation .col .image {
+        width: 20rem;
+    }
+    .donate .latest-donation h5 {
+        margin-bottom: 0.5rem;
+        margin-top: 1rem;
+    }
+    .donate .latest-donation h6,
+    .donate .latest-donation span {
+        line-height: 20px;
+    }
 }
