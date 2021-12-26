@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import DonateBtn from "./../../../../components/donate-btn";
@@ -6,6 +7,15 @@ import DonateBtn from "./../../../../components/donate-btn";
 
 
 export default function Header() {
+
+  useEffect(() => {
+    autoCloseDrawer();
+  }, []);
+
+  const autoCloseDrawer = (toggleId='nav-toggle',navId='nav-menu') => {
+    const toggle = document.getElementById(toggleId), nav = document.getElementById(navId);
+    nav.classList.toggle('show-menu');
+  }
   
   const showMenu =(toggleId, navId) =>{
     const toggle = document.getElementById(toggleId), nav = document.getElementById(navId);
@@ -54,7 +64,8 @@ export default function Header() {
                           {/* <a href="#" className="nav_logo">
                             <img src="assets/images/KWLC Logo 1.png" className="" alt="KWLC Logo"/>
                           </a> */}
-                          <div className="footer_logo"><img src="/images/KWLCLogo.svg" alt="KWLC Logo"/></div>
+                          <div className="nav_logo">
+                            <img src="/images/KWLCLogo.svg" alt="KWLC Logo"/></div>
                         </li>
                         <li className="nav_item"><a href={"/web/events"} className="nav_link">Events</a></li>
                         <li className="nav_item"><a href={"/web/404"} className="nav_link">Blog</a></li>

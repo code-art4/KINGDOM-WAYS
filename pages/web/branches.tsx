@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Branches from '../../src/ui/dashboard/web/branch';
+import WebBranches from '../../src/ui/dashboard/web/branch';
 
-export default function Branch() {
+export default function Branches() {
   return (
-    <Branches />
+    <WebBranches />
   );
 }

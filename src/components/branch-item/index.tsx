@@ -2,14 +2,15 @@ import moment from "moment";
 import { FC } from "react";
 
 interface branchItem {
-    title: string,
-    description: string,
+    title: String,
+    description: String,
     timers: Date[],
     onClick,
 };
 
 const BranchItem:FC<branchItem> = ({title, description, timers, onClick}) => {
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
         onClick();
     }
     
@@ -37,7 +38,7 @@ const BranchItem:FC<branchItem> = ({title, description, timers, onClick}) => {
                     </ul>
                 </span>
             </div>
-            <a href="#" onClick={(e) => handleClick()}>See More</a>
+            <a href="#" onClick={(e) => handleClick(e)}>See More</a>
         </div>
     );
 }

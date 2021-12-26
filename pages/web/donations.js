@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Donations from '../../src/ui/donations';
+import DonationIntro from '../../src/ui/dashboard/web/donate/intro';
 
 export default function Donation() {
   return (
-    <Donations />
+    <DonationIntro />
   );
 }

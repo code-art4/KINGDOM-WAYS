@@ -1,53 +1,49 @@
+import React, {useEffect, useState} from 'react';
 import DonateBtn from "../../../../components/donate-btn";
-import { fakeModel } from "../../../../utils";
+import { fakeModel, getParam } from "../../../../utils";
+import { DonationsModel } from "../../../../testModel";
+import DonateItemDTO from '../../../../dto/Donate.dto';
+
 
 export default  function DonateContent() {
-    const testData = 
-        {
-            description: "Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitationullamo laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, sed do eiusmo temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.",
-            images: [
-                "/images/project-1.jpg",
-                "/images/project-2.jpg",
-                "/images/project-2.jpg",
-                "/images/project-1.jpg",
-            ],
-            title: "Kingdom ways (ikeja)",
-            latestDonations: [
-                {
-                    img: "/images/build-church-schools.jpg",
-                    title:"Build church school", 
-                    target: "23,000,000",
-                    raised: "130,000"
-                },
-                {
-                    img: "/images/build-church-schools.jpg",
-                    title:"Build church school", 
-                    target: "23,000,000",
-                    raised: "130,000"
-                },
-            ]
-        };
+    const [item, setItem] = useState(new DonateItemDTO());
     
+    useEffect(() => {
+        const id: string = getParam("id");
+        if (!id) {
+            window.location.href = "/web/";
+        }
+        else {
+            if (fakeModel) {
+                const donateItem = DonationsModel.filter(x => x.id.toString() == id);
+                if (donateItem.length > 0) {
+                    setItem(donateItem[0]);
+                }
+                else {}
+            }
+            else {}
+        }
+    }, []);
+    
+    const latestDonations: DonateItemDTO[] = DonationsModel;
+
     return (
         <>
             <section className="content">
                 <div className="row">
                     <div className="col image">
-                        <img src="/images/church-building-large.jpg" alt="" />
+                        <img src={item.image} alt="" />
                     </div>
                     <div className="col main-content">
-                        <h3>{!fakeModel ? undefined :  testData.title}</h3>
+                        <h3>{!fakeModel ? undefined :  item.title}</h3>
                         <p>
-                            {!fakeModel ? undefined :  testData.description}
+                            {!fakeModel ? undefined :  item.description}
                         </p>
                         <div className="btn-container">
                             <DonateBtn />
-                            {/* <button id="donate">
-                                <img src="/images/donate-icon.svg" alt="" /> 
-                                Donate
-                            </button> */}
-                            <DonateBtn label="Share" />
-                            {/* <button>Share</button> */}
+                            <DonateBtn 
+                                label="Share" 
+                            />
                         </div>
                     </div>
                 </div>
@@ -59,9 +55,10 @@ export default  function DonateContent() {
                             ? 
                                 undefined 
                             :  
-                                testData.images.map((x,index) => {
+                                item.images.length > 0 ? item.images.map((x,index) => {
                                     return (<img key={index} src={x} alt="" />);
                                 })
+                                : undefined
                         }
                     </div>
                 </div>
@@ -72,11 +69,11 @@ export default  function DonateContent() {
             {!fakeModel ? 
                 undefined 
             :  
-            (testData.latestDonations.length > 0 ? testData.latestDonations.reverse().slice(0, 2).map((x, index) => {
+            (latestDonations.length > 0 ? latestDonations.reverse().slice(0, 2).map((x, index) => {
                 return (
                     <DonantionItem 
                         key={index}
-                        img={x.img} 
+                        img={x.image} 
                         title={x.title} 
                         target={x.target} 
                         raised={x.raised}                
