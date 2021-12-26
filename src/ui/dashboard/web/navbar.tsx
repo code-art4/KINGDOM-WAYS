@@ -34,23 +34,25 @@ export default function NavBar() {
                     <div className="nav_menu" id="nav-menu">
                         <ul className="nav_list">
                             <li className="nav_item">
-                                <a href="/web" className="nav_link">Home</a>
+                                <a href={"/web"} className="nav_link">Home</a>
                             </li>
                             <li className="nav_item">
-                                <a href="pages.html" className="nav_link">Pages</a>
+                                <a href={"/web/404"} className="nav_link">Pages</a>
                             </li>
                             <li className="nav_item">
-                                <a href="/web/donate" className="nav_link">Donations</a>
+                                <a href={"/web/donate"} className="nav_link">Donations</a>
                             </li>
                             <li className="nav_item">
-                                <a href="/web/events" className="nav_link">Events</a>
+                                <a href={"/web/events"} className="nav_link">Events</a>
                             </li>
                             <li className="nav_item">
-                                <a href="blog.html" className="nav_link">Blog</a>
+                                <a href={"/web/404"} className="nav_link">Blog</a>
                             </li>
-                            <li className="nav_item"><a href="shop.html" className="nav_link">Shop</a></li>
                             <li className="nav_item">
-                                <a href="cart.html" className="nav_link">
+                                <a href={"/web/404"} className="nav_link">Shop</a>
+                            </li>
+                            <li className="nav_item">
+                                <a href={"/web/404"} className="nav_link">
                                     <i className="icofont-shopping-cart"></i>
                                 </a>
                             </li>

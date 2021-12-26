@@ -48,8 +48,8 @@ export default function Header() {
                           <DonateBtn />
                         </li>
                         <li className="nav_item"><a href="" className="nav_link">Home</a></li>
-                        <li className="nav_item"><a href="pages.html" className="nav_link">Pages</a></li>
-                        <li className="nav_item"><a href="dponations.html" className="nav_link">Donations</a></li>
+                        <li className="nav_item"><a href={"/web/404"} className="nav_link">Pages</a></li>
+                        <li className="nav_item"><a href={"/web/donate"} className="nav_link">Donations</a></li>
                         <li className="nav_item">
                           {/* <a href="#" className="nav_logo">
                             <img src="assets/images/KWLC Logo 1.png" className="" alt="KWLC Logo"/>
@@ -57,8 +57,8 @@ export default function Header() {
                           <div className="footer_logo"><img src="/images/KWLCLogo.svg" alt="KWLC Logo"/></div>
                         </li>
                         <li className="nav_item"><a href={"/web/events"} className="nav_link">Events</a></li>
-                        <li className="nav_item"><a href="blog.html" className="nav_link">Blog</a></li>
-                        <li className="nav_item"><a href="shop.html" className="nav_link">Shop</a></li>
+                        <li className="nav_item"><a href={"/web/404"} className="nav_link">Blog</a></li>
+                        <li className="nav_item"><a href={"/web/404"} className="nav_link">Shop</a></li>
                         <li className="nav_item">
                           <a href="cart.html" className="nav_link">
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
