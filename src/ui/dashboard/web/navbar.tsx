@@ -40,7 +40,7 @@ export default function NavBar() {
                                 <a href={"/web/404"} className="nav_link">Pages</a>
                             </li>
                             <li className="nav_item">
-                                <a href={"/web/donate"} className="nav_link">Donations</a>
+                                <a href={"/web/donations"} className="nav_link">Donations</a>
                             </li>
                             <li className="nav_item">
                                 <a href={"/web/events"} className="nav_link">Events</a>
@@ -49,7 +49,7 @@ export default function NavBar() {
                                 <a href={"/web/404"} className="nav_link">Blog</a>
                             </li>
                             <li className="nav_item">
-                                <a href={"/web/404"} className="nav_link">Shop</a>
+                                <a href={"/web/shop"} className="nav_link">Shop</a>
                             </li>
                             <li className="nav_item">
                                 <a href={"/web/404"} className="nav_link">

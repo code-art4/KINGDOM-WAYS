@@ -48,18 +48,18 @@ export default function Header() {
             <hr/>
             {/* <!-- navigation menu --> */}
             <nav className="nav_bar">
-                <a href="#" className="nav_logo">
+                <a href="#" className="nav_logo" style={{zIndex: 0}}>
                   <img src="/images/KWLClogo.svg" alt="KWLC Logo"/>
                 </a>
                 {/* <!----------Navigation Links---------> */}
-                <div className="nav_menu" id="nav-menu">
+                <div className="nav_menu" id="nav-menu" style={{zIndex: 2}}>
                     <ul className="nav_list">
                         <li className="nav_item">
                           <DonateBtn />
                         </li>
                         <li className="nav_item"><a href="" className="nav_link">Home</a></li>
                         <li className="nav_item"><a href={"/web/404"} className="nav_link">Pages</a></li>
-                        <li className="nav_item"><a href={"/web/donate"} className="nav_link">Donations</a></li>
+                        <li className="nav_item"><a href={"/web/donations"} className="nav_link">Donations</a></li>
                         <li className="nav_item">
                           {/* <a href="#" className="nav_logo">
                             <img src="assets/images/KWLC Logo 1.png" className="" alt="KWLC Logo"/>
@@ -69,13 +69,13 @@ export default function Header() {
                         </li>
                         <li className="nav_item"><a href={"/web/events"} className="nav_link">Events</a></li>
                         <li className="nav_item"><a href={"/web/404"} className="nav_link">Blog</a></li>
-                        <li className="nav_item"><a href={"/web/404"} className="nav_link">Shop</a></li>
+                        <li className="nav_item"><a href={"/web/shop"} className="nav_link">Shop</a></li>
                         <li className="nav_item">
-                          <a href="cart.html" className="nav_link">
+                          <a href={"/web/404"} className="nav_link">
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                           </a>
                         </li>
-                        <li className="nav_item"><a href="cart.html" className="nav_link"><i className="fa fa-search" aria-hidden="true"></i></a></li>
+                        <li className="nav_item"><a href={"/web/404"} className="nav_link"><i className="fa fa-search" aria-hidden="true"></i></a></li>
                         <div className="nav_item">
                             <div className="dropdown">
                                 <div className="nav_tog">
@@ -85,12 +85,24 @@ export default function Header() {
                                 </div>
                                 <input className="drop_input" id="toggle" type="checkbox" checked />
                                 <ul className="dropdown_contents">
-                                    <li className="dropdown_menu"><a href="about.html" className="nav_link">About us</a></li>
-                                    <li className="dropdown_menu"><a href="#" className="nav_link">Our Team</a></li>
-                                    <li className="dropdown_menu"><a href="#" className="nav_link">Our Beliefs</a></li>
-                                    <li className="dropdown_menu"><a href="#" className="nav_link">Our Community</a></li>
-                                    <li className="dropdown_menu"><a href="#" className="nav_link">Branches</a></li>
-                                    <li className="dropdown_menu"><a href="#" className="nav_link">Payment page</a></li>
+                                    <li className="dropdown_menu">
+                                      <a href={"/web/404"} className="nav_link">About us</a>
+                                    </li>
+                                    <li className="dropdown_menu">
+                                      <a href="#" className="nav_link">Our Team</a>
+                                    </li>
+                                    <li className="dropdown_menu">
+                                      <a href="#" className="nav_link">Our Beliefs</a>
+                                    </li>
+                                    <li className="dropdown_menu">
+                                      <a href="#" className="nav_link">Our Community</a>
+                                    </li>
+                                    <li className="dropdown_menu">
+                                      <a href="#" className="nav_link">Branches</a>
+                                    </li>
+                                    <li className="dropdown_menu">
+                                      <a href="#" className="nav_link">Payment page</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

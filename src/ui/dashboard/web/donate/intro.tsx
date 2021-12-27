@@ -1,3 +1,4 @@
+import ListMenuIcon from "../../../../components/list-menu-icon";
 import { DonationsModel } from "../../../../testModel";
 import { fakeModel } from "../../../../utils";
 import Layout from "../layout";
@@ -21,9 +22,11 @@ export default function DonationIntro () {
             <section className="content">
         <nav>
             <h3>LATEST DONATION</h3>
-
+            <ListMenuIcon 
+                onClick={() => console.log("eeee")} 
+            />
             {/* <!-- Navigation --> */}
-            <div className="list-icon">
+            {/* <div className="list-icon">
                 <div className="list-icon-container">
                     <div className="list-icon-rectangle"></div>
                     <div className="list-icon-circle"></div>
@@ -36,14 +39,14 @@ export default function DonationIntro () {
                     <div className="list-icon-rectangle"></div>
                     <div className="list-icon-circle"></div>
                 </div>
-            </div>
+            </div> */}
         </nav>
 
         <div className="content-container row">
             {
                 !fakeModel ? undefined : (
                     DonationsModel.length > 0 ?
-                        DonationsModel.map((x, index) => {
+                        DonationsModel.slice(0,2).map((x, index) => {
                             return (
                                 <RenderDonationItem 
                                     key={index}

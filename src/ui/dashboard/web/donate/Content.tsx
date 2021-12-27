@@ -3,6 +3,7 @@ import DonateBtn from "../../../../components/donate-btn";
 import { fakeModel, getParam } from "../../../../utils";
 import { DonationsModel } from "../../../../testModel";
 import DonateItemDTO from '../../../../dto/Donate.dto';
+import { loadDonations, navigateToHome } from '../../../../controller/donation.controller';
 
 
 export default  function DonateContent() {
@@ -11,15 +12,12 @@ export default  function DonateContent() {
     useEffect(() => {
         const id: string = getParam("id");
         if (!id) {
-            window.location.href = "/web/";
+            
+            navigateToHome();
         }
         else {
             if (fakeModel) {
-                const donateItem = DonationsModel.filter(x => x.id.toString() == id);
-                if (donateItem.length > 0) {
-                    setItem(donateItem[0]);
-                }
-                else {}
+                loadDonations(setItem, DonationsModel, id);
             }
             else {}
         }
@@ -88,20 +86,20 @@ export default  function DonateContent() {
 
 const DonantionItem = ({img, title, target, raised}) => {
     return (
-        <div className="col row">
+        <div className="col row ">
             <div className="image">
                 <img src={img} alt="" />
             </div>
-            <div className="project-content">
+            <div className="project-content" >
                 <h5>{title}</h5>
-                <div className="row">
+                <div className="">
                     <h6>Target:</h6>
-                    <span>N {target}</span>
+                    <span style={{fontSize: 16}}>N {target}</span>
                 </div>
 
-                <div className="row">
+                <div className="">
                     <h6>Raised:</h6>
-                    <span>N {raised}</span>
+                    <span style={{fontSize: 16}}>N {raised}</span>
                 </div>
             </div>
         </div>
