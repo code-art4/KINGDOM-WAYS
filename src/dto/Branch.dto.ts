@@ -1,11 +1,11 @@
 export class BranchItemDTO {
-    description: String;
+    description: string;
     timers: Date[] = [];
-    title: String;
+    title: string;
     id: Number;
-    image: String;
-    leadPastor: String;
-    favVerse: String;
-    location: String;
-    phoneNo: String[];
+    image: string;
+    leadPastor: string;
+    favVerse: string;
+    location: string;
+    phoneNo: string[];
 }
