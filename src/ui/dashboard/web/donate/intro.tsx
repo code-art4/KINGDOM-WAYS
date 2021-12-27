@@ -73,7 +73,7 @@ const RenderDonationItem = ({img, title, description, href}) => {
     return (
         <div className="col">
             <div className="image">
-                <img src={img} alt="" srcset="" />
+                <img src={img} alt="" srcSet="" />
             </div>
             <div className="main-content">
                 <h5>{title}</h5>

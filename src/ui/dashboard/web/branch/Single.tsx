@@ -46,7 +46,7 @@ const SingleBranch = () => {
                         <div className="col">
                             <div className="profile">
                                 <div className="image">
-                                    <img src="/images/profile.jpg" alt="" srcset="" />
+                                    <img src="/images/profile.jpg" alt="" srcSet="" />
                                 </div>
                                 <div className="profile-info">
                                     <h5>{item.leadPastor}</h5>
@@ -74,7 +74,7 @@ const SingleBranch = () => {
 
                         <div className="col card first-card">
                             <div className="image">
-                                <img src="images/list-icon-1.svg" alt="" srcset="" />
+                                <img src="images/list-icon-1.svg" alt="" srcSet="" />
                             </div>
                             <p>
                                 {item.location}
@@ -84,7 +84,7 @@ const SingleBranch = () => {
                         <div className="col w-50">
                             <div className="card row w-100 align-center justify-start cards">
                                 <div className="image">
-                                    <img src="/images/list-icon-2.svg" alt="" srcset="" />
+                                    <img src="/images/list-icon-2.svg" alt="" srcSet="" />
                                 </div>
                                 <span>
                                     <p className="inline">{`${item.timers[0]&& mmFormat(item.timers[0])}-${item.timers[1] && mmFormat(item.timers[1])}`}
@@ -97,7 +97,7 @@ const SingleBranch = () => {
 
                             <div className="card row w-100 align-center justify-start cards">
                                 <div className="image">
-                                    <img src="/images/list-icon-3.svg" alt="" srcset="" />
+                                    <img src="/images/list-icon-3.svg" alt="" srcSet="" />
                                 </div>
 
                                 <span>
@@ -115,7 +115,7 @@ const SingleBranch = () => {
                 </section>
                 <section className="w-100">
                     <div className="image map">
-                        <img src="/images/maps.jpeg" alt="" srcset="" />
+                        <img src="/images/maps.jpeg" alt="" srcSet="" />
                     </div>
                 </section>
             </div>
