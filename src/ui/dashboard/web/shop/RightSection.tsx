@@ -36,7 +36,7 @@ export default function ShopRightSection () {
                 </div>
                 <div className="filter">
                     <button className="button">Filter</button>
-                    <div className="filterValue">Price <span value="50">N0- N50</span></div>
+                    <div className="filterValue">Price <span >N0- N50</span></div>
                 </div>
 
                 <h3>TOP PRODUCTS</h3>
