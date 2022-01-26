@@ -18,8 +18,8 @@ export const urls = {
 
 
     ...{
-        // baseUrl: "http://nolly19o-001-site10.itempurl.com/api/v1/",
-        baseUrl: "http://localhost:8010/proxy/api/",
+        baseUrl: "http://nolly19o-001-site10.itempurl.com/api/v1/",
+        //baseUrl: "http://localhost:8010/proxy/api/",
         "login": "v1/User/Login/",
     },
     
