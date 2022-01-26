@@ -1,6 +1,6 @@
-export default function DonateBtn({label="Donate", withImg=true, style={}}) {
+export default function DonateBtn({label="Donate", withImg=true, style={}, className="", labelStyle={color: "white"}}) {
     return (
-        <button className="btn" style={{...style, }}>
+        <button className={!className ? "btn " : className} style={{...style, }}>
             {
                 withImg &&
                 <img
@@ -9,7 +9,7 @@ export default function DonateBtn({label="Donate", withImg=true, style={}}) {
             }
             
             {/* <i className="fa fa-gift" aria-hidden="true"></i> */}
-            <span style={{marginRight: 5}}>
+            <span style={{marginRight: 5, ...labelStyle}} >
                 {` ${label} `}
             </span>
         </button>

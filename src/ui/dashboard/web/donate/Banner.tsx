@@ -1,6 +1,6 @@
 const DonateBanner = () => {
     return (
-        <div className="hero-banner-area">
+        <div className="hero-banner-area" style={{backgroundImage: 'none'}}>
             <img src="/images/donation-hero-banner.png" alt="" />
             <div className="hero-banner-area-text">
                 <h2>“A gift opens the way and ushers the giver into the presence of the great.”</h2>

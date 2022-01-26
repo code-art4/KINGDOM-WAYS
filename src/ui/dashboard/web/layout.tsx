@@ -1,12 +1,23 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import Head from 'next/head';
 import { LayoutProps } from "../../../types/appTypes";
 import NavBar from './navbar';
 import HomePageFooter from './footer';
+import { initApp, saltConst } from '../../../utils';
+import { LoginModelDTO } from '../../../dto/login.dto';
+import { CryptoEncodeDecode, HashlidEncoDecode } from '../../../encodeDecode';
 
 
 const Layout: React.FC<LayoutProps> = ({ children, externalStyles, navbar, title="KWLC", withFooter=false }: LayoutProps) => {
-  console.log(navbar);
+  useEffect(() => {
+    initApp(
+      new LoginModelDTO({username: "Nolly", password: "12345"}),
+      new HashlidEncoDecode(saltConst),
+      localStorage,
+      new CryptoEncodeDecode(saltConst),
+    )
+  }, []);
+  
   return (
       <>
         <Head>

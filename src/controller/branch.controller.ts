@@ -1,0 +1,81 @@
+import moment from "moment";
+import { getBranchesApi, getSingleBranchApi } from "../api/branch.api";
+import { BranchDTO, BranchItemDTO, BranchMediaDTO } from "../dto/Branch.dto";
+import { ResponseDTO } from "../dto/response.dto";
+import { statusEnum } from "../enums/util.enum";
+import { BranchesModel, DonationsModel } from "../testModel";
+import { fakeModel } from "../utils";
+import { BlogDTO } from "./../dto/Blog.dto";
+
+export async function loadBranchData(setList: Function) {
+    try {
+        if (fakeModel) {
+            const data:BranchItemDTO[] = BranchesModel;
+            const branchData = [];
+            setList(data);
+        }
+        else {
+            
+            const response: ResponseDTO = await getBranchesApi();
+            if (response.code < statusEnum.ok) {
+                throw new Error(response.extra_data.toString());
+            }
+            const data:BranchDTO[] = response.data;
+            const branchData:BranchItemDTO[] = [];
+            
+            data && data.length > 0 && data.map((i) => {
+                const record = new BranchItemDTO({
+                    title: i.name,
+                    timers: i.services,
+                    description: i.location,
+                    favVerse: "",
+                    id: i.id,
+                    image: i.mediaVm.length > 0 ? i.mediaVm[0] : new BranchMediaDTO(),
+                    leadPastor: "Pastor Ken",
+                    location: i.location,
+                    phoneNo: [],
+                });
+    
+                branchData.push(record);
+            });
+            
+            setList(branchData);
+        }
+    }
+    catch(e) {
+        console.error(e);
+    }
+}
+
+export const loadSingleBranch = async (setItem: Function, id: string) => {
+    if (fakeModel) {
+        const item = BranchesModel.filter(x => x.id.toString() == id);
+        if (item.length > 0) {
+            setItem(item[0]);
+        }
+        else {}
+    }
+    else {
+        const response: ResponseDTO = await getSingleBranchApi(parseInt(id));
+        if (response.code < statusEnum.ok) {
+            throw new Error(response.extra_data.toString());
+        }
+        const i:BranchDTO = response.data;
+        
+        setItem(new BranchItemDTO({
+            description: i.location,
+            id: i.id,
+            image: i.mediaVm.length > 0 ? i.mediaVm[0] : new BranchMediaDTO(),
+            images: i.mediaVm.length > 0 ? i.mediaVm : [],
+            raised: 0,
+            target: 0,
+            title: i.name,
+            phoneNo: [],
+            timers: i.services,
+            favVerse: "",
+            leadPastor: "Pastor Ken",
+            location: i.location,
+        }));
+    }
+    
+}

@@ -1,4 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React , {useState, useEffect} from 'react';
+import { loadSingleBranch } from '../../../../controller/branch.controller';
 import { BranchItemDTO } from '../../../../dto/Branch.dto';
 import { BranchesModel } from '../../../../testModel';
 import { fakeModel, getParam, mmFormat } from '../../../../utils';
@@ -14,13 +16,7 @@ const SingleBranch = () => {
             window.location.href = "/web/";
         }
         else {
-            if (fakeModel) {
-                const item = BranchesModel.filter(x => x.id.toString() == idParam);
-                if (item.length > 0) {
-                    setItem(item[0]);
-                    console.log(item[0]);
-                }else {}
-            }
+            loadSingleBranch(setItem, idParam);
         }
     }, []);
     
@@ -33,7 +29,7 @@ const SingleBranch = () => {
         >
             <div className="eachBranch">
                 <div className="hero-banner-area">
-                    <img src={item.image} alt="" />
+                    <img src={((item.image && item.image.url != "") ? item.image?.url : BranchesModel[0].image.url)} alt="" />
                     <div className="hero-banner-area-text">
                         <h2>{item.title}</h2>
                     </div>
@@ -59,7 +55,7 @@ const SingleBranch = () => {
                                 Hello people, 
                             </span>
                             <span>
-                                My Name is {item.leadPastor}, the lead pastor in kingdom ways living church international. It’s my humble pleasure to welcome you to our world.
+                                My Name is {item.leadPastor}, a pastor in kingdom ways living church international. It’s my humble pleasure to welcome you to our world.
                             </span>
                             <span>
                                 {item.favVerse}
@@ -74,7 +70,7 @@ const SingleBranch = () => {
 
                         <div className="col card first-card">
                             <div className="image">
-                                <img src="images/list-icon-1.svg" alt="" srcSet="" />
+                                <img src="/images/list-icon-1.svg" alt="" srcSet="" />
                             </div>
                             <p>
                                 {item.location}
@@ -87,10 +83,15 @@ const SingleBranch = () => {
                                     <img src="/images/list-icon-2.svg" alt="" srcSet="" />
                                 </div>
                                 <span>
-                                    <p className="inline">{`${item.timers[0]&& mmFormat(item.timers[0])}-${item.timers[1] && mmFormat(item.timers[1])}`}
-                                        <ul className="inline">
-                                            <li>{`${item.timers[2] && mmFormat(item.timers[2])}-${mmFormat(item.timers[3]) && mmFormat(item.timers[3])}`}</li>
-                                        </ul>
+                                    <p className="inline">
+                                        {
+                                            item.timers.length > 0 ? 
+                                            item.timers.map((x, index) => {
+                                                return <ul key={index} className="inline"><li>{x.day} {x.time}</li></ul>
+                                            })
+                                            : undefined
+                                        }
+                                        
                                     </p>
                                 </span>
                             </div>

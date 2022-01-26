@@ -55,7 +55,9 @@ export default function Slider() {
                     </span>
                     <span className="nav-links"><a href="">Home</a></span>
                     <span className="nav-links"><a href="">Pages</a></span>
-                    <span className="nav-links"><a href="/web/donations">Donations</a></span>
+                    <span className="nav-links">
+                        <a href="/web/donations">Donations</a>
+                    </span>
                     <span className="nav-links">
                         <img
                             className="homepage-nav-image"  

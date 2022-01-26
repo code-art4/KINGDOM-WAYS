@@ -9,7 +9,7 @@ interface EventFinderItem {
 
 const EventFinder:FC<EventFinderItem> = ({datetime}) => {
     return (
-        <div style={{marginTop: '5%'}}>
+        <div >
             <h2 className="section_title">
                 Events For {moment(datetime).format('DD.MM.yy')}
             </h2>

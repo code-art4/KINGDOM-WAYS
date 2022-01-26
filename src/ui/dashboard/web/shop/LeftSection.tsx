@@ -1,8 +1,19 @@
+import React,{ useState, useEffect } from "react";
 import ShopItem from "../../../../components/shop-item";
+import { initShopLeftItems } from "../../../../controller/shop.controller";
+import ShopItemDTO from "../../../../dto/ShopItem.dto";
 import { ShopItemsModel } from "../../../../testModel";
 import { fakeModel } from "../../../../utils";
 
 export default function ShopLeftSection() {
+    const emptyTopItems: ShopItemDTO[] = [];
+    
+    const [items, setItems] = useState(emptyTopItems);
+
+    useEffect(() => {
+        initShopLeftItems(setItems);
+    }, []);
+    
     return (
         <div className="column left">
           <div className="setSearch">
@@ -11,9 +22,8 @@ export default function ShopLeftSection() {
           </div>
           <div className="products">
               {
-                  !fakeModel ? undefined : 
-                  (ShopItemsModel.length > 0 ?
-                    ShopItemsModel.map(x => {
+                  (items.length > 0 ?
+                    items.map(x => {
                         return (
                             <ShopItem 
                                 key={x.id}

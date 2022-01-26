@@ -1,7 +1,7 @@
 export default function HomeFamilySection() {
     // <!-- family-section-start -->
         return (
-        <section className="family_section_area pr">
+            <section className="family_section_area pr">
             <div className="shape-1">
                 <svg width="222" height="202" viewBox="0 0 222 202" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -19,20 +19,20 @@ export default function HomeFamilySection() {
             <h2>Join the family</h2>
             <div className="service_posts row justify_one">
                 <div className="service_image">
-                    <img className="family_img family-left" src="images/prayer.png" alt="Family Image"/>
+                    <img className="family_img family-left" src="/images/prayer.png" alt="Family Image" />
                 </div>
 
                 <div className="right_text">
-                    <h3>Fellowship with us in any <br></br> of our branches </h3>
+                    <h3>Fellowship with us in any <br/> of our branches </h3>
                     <a href="#" className="btn">learn more</a>
                 </div>
             </div>
             <div className="service_posts row justify_two">
                 <div className="service_image">
-                    <img className="family_img" src="images/book.png" alt="Book Image"/>
+                    <img className="family_img" src="/images/book.png" alt="Book Image"/>
                 </div>
                 <div className="right_text">
-                    <h3>Join our bible classNamees today </h3>
+                    <h3>Join our bible classes today </h3>
                     <a href="#" className="btn">learn more</a>
                 </div>
             </div>

@@ -1,3 +1,7 @@
+import { getShopItemsApi } from "../api/shop.api";
+import { ResponseDTO } from "../dto/response.dto";
+import ShopItemDTO, { ShopDTO } from "../dto/ShopItem.dto";
+import { statusEnum } from "../enums/util.enum";
 import { ShopItemsModel } from "../testModel"
 import { fakeModel } from "../utils"
 
@@ -9,6 +13,68 @@ export const initShopTopItems = (setTopItems: Function) => {
 
     }
 }
+
+export const initShopLeftItems = async (setTopItems: Function) => {
+    if (fakeModel) {
+        setTopItems(ShopItemsModel.slice(0,3));
+    }
+    else 
+    {
+        const response: ResponseDTO = await getShopItemsApi();
+        if (response.code < statusEnum.ok) {
+            throw new Error(response.extra_data.toString());
+        }
+
+        const data:ShopDTO[] = response.data;
+        const _data:ShopItemDTO[] = [];
+        data && data.length > 0 && data.map(x => {
+            _data.push(new ShopItemDTO({
+                copies: x.quantity,
+                description: x.description,
+                id: x.id,
+                price: x.price,
+                title: x.title,
+                img: (x.productImages.length > 0 ? x.productImages[0].imageUrl : ""),
+                images: (x.productImages.length > 0 ? x.productImages.map(x => x.imageUrl) : []),
+                information: [
+                    {
+                        key: "weight",
+                        value: "10kg",
+                    },
+                    {
+                        key: "dimension",
+                        value: "2.2",
+                    }
+                ]
+
+        }));
+
+        //remove on deploy or demo
+        data && data.length > 0 && data.reverse().map(x => {
+            _data.push(new ShopItemDTO({
+                copies: x.quantity,
+                description: x.description,
+                id: x.id,
+                price: x.price,
+                title: x.title,
+                img: (x.productImages.length > 0 ? x.productImages[0].imageUrl : ""),
+                images: (x.productImages.length > 0 ? x.productImages.map(x => x.imageUrl) : []),
+                information: [
+                    {
+                        key: "weight",
+                        value: "10kg",
+                    },
+                    {
+                        key: "dimension",
+                        value: "2.2",
+                    }
+                ],
+            }));
+        });
+        
+});
+    }  
+}  
 
 export const shopRelatedItems = (setTopItems: Function) => {
     if (fakeModel) {

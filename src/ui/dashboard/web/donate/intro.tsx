@@ -1,9 +1,18 @@
+import React, {useEffect, useState} from 'react';
 import ListMenuIcon from "../../../../components/list-menu-icon";
+import { loadDonations } from '../../../../controller/donation.controller';
+import DonateItemDTO from '../../../../dto/Donate.dto';
 import { DonationsModel } from "../../../../testModel";
 import { fakeModel } from "../../../../utils";
 import Layout from "../layout";
 
 export default function DonationIntro () {
+    const [items, setItems] = useState([]);
+    useEffect(() => {
+        loadDonations(setItems);
+    },[]);
+    
+    console.log("items", items);
     return (
         <>
         <Layout
@@ -25,40 +34,23 @@ export default function DonationIntro () {
             <ListMenuIcon 
                 onClick={() => console.log("eeee")} 
             />
-            {/* <!-- Navigation --> */}
-            {/* <div className="list-icon">
-                <div className="list-icon-container">
-                    <div className="list-icon-rectangle"></div>
-                    <div className="list-icon-circle"></div>
-                </div>
-                <div className="list-icon-container">
-                    <div className="list-icon-rectangle"></div>
-                    <div className="list-icon-circle"></div>
-                </div>
-                <div className="list-icon-container">
-                    <div className="list-icon-rectangle"></div>
-                    <div className="list-icon-circle"></div>
-                </div>
-            </div> */}
         </nav>
 
         <div className="content-container row">
             {
-                !fakeModel ? undefined : (
-                    DonationsModel.length > 0 ?
-                        DonationsModel.slice(0,2).map((x, index) => {
-                            return (
-                                <RenderDonationItem 
-                                    key={index}
-                                    img={x.image} 
-                                    title={x.title} 
-                                    description={x.description.substring(0, 100)}
-                                    href={`/web/donate?id=${x.id}`}
-                                />
-                            );
-                        })
-                    : undefined
-                )
+                
+                items.map((x, index) => {
+                        const element = <RenderDonationItem 
+                            key={index}
+                            img={x.image} 
+                            title={x.title} 
+                            description={x.description.substring(0, 100)}
+                            href={`/web/donate?id=${x.id}`}
+                        />;    
+                        console.log("Rendering", element);
+                        return element;
+                    })
+                // : undefined
             }
 
             

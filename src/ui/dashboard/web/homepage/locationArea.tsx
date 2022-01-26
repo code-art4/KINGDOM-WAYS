@@ -6,13 +6,13 @@ export default function LocationArea() {
                     <div className="map-left">
                         <p>where to find us</p>
                         <h3>Where’s your location?</h3>
-                        <img className="" src="images/Map.png" alt="Map Image"/>
+                        <img className="" src="/images/maps.png" alt="Map Image"/>
                     </div>
                 </div>
                 <div className="address_col">
                     <div className="address-right">
-                        <img src="images/location.png" alt="Location Image"/>
-                        <h2>Kingdom Ways Living <br></br> Church Headquarters</h2>
+                        <img src="/images/location.png" alt="Location Image" />
+                        <h2>Kingdom Ways Living <br/> Church Headquarters</h2>
                         <p>Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. </p>
                         <p><i className="fas fa-phone-square-alt"></i> + 234 70 433 2832</p>
                         <p> <i className="fas fa-location"></i>24 Prince Ibrahim Eletu Avenue, Shoprite Circle Mall Road Jakande Bus Stop, Osapa London,Lagos

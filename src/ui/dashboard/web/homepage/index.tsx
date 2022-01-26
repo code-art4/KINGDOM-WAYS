@@ -11,6 +11,7 @@ import HomeFamilyArea from './familySection';
 import LocationArea from './locationArea';
 import HomePageFooter from './../footer';
 import Layout from "../layout";
+import AltHomePageHeader from './AltHeader';
 
 
 
@@ -23,10 +24,14 @@ export default function HomePage() {
       <div className="bg_secondary_color">
         <Head>
           <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-            <link href="/styles/css/home.css" rel="stylesheet" />
+          <link href="/styles/css/style.css" rel="stylesheet" />
+          <link href="/icofont/icofont.min.css" rel="stylesheet" />
+          <link href="/icofont/icofont/fontawesome-all.min" rel="stylesheet" />
+          
         </Head>
-        <Header />
-        <div className="main_container">
+        {/* <Header /> */}
+        <AltHomePageHeader />
+        <div className="main_container home-container">
           <HeroBanner />
           <HomeTimer />
           <HomeServiceArea />

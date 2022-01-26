@@ -1,18 +1,26 @@
+import HomePageFooter from "../footer";
 import Layout from "../layout";
 import BranchBanner from "./Banner";
 import BranchContent from "./Content";
+import BranchSearch from "./Search";
 
 export default function Branches() {
     return (
         <Layout
-            externalStyles={["/styles/css/donation.css"]}
+            externalStyles={["/styles/css/style.css"]}
             navbar={"web"}
             title="Church Branches"
-            withFooter={true}
+            withFooter={false}
+
         >
             <div className="branch">
-                <BranchBanner />
-                <BranchContent />
+                
+                <div className="main_container">
+                    <BranchBanner />
+                    {/* <BranchSearch location={"Lagos"} /> */}
+                    <BranchContent />
+                    <HomePageFooter />
+                </div>
             </div>
         </Layout>
     );

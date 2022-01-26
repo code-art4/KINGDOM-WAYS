@@ -13,7 +13,7 @@ const EventList: FC<EventListItem> = ({datetimeCurrentRange, list}) => {
     return (
         // <!-- Container -->
         <>
-            <section className="event_list">
+            <section className="event_list" style={{padding: 20}}>
                 <div className="intro">
                     <strong>VIEW AS :</strong>   
                     <h5>

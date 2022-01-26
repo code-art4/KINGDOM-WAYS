@@ -1,7 +1,6 @@
 export default function HeroBanner() {
     return (
         <section className="hero-banner-area">
-            {/* <!-- <img className="hero-banner-area" src="images/hero-banner.png" alt="Hero Banner Image"> --> */}
             <div className="banner_content">
                 <p className="italic_txt">Living Church</p>
                 <h1>Join the prayer today</h1>
@@ -9,5 +8,6 @@ export default function HeroBanner() {
                 <a href="#" className="button">See More</a>
             </div>
         </section>
+
     );
 }

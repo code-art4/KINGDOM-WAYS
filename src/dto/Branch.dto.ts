@@ -1,11 +1,56 @@
 export class BranchItemDTO {
+    public constructor(init?:Partial<BranchItemDTO>) {
+        Object.assign(this, init);
+    }
     description: string;
-    timers: Date[] = [];
+    timers: BranchServiceDTO[] = [];
     title: string;
-    id: Number;
-    image: string;
+    id: number;
+    image: BranchMediaDTO;
+    images: BranchMediaDTO[];
     leadPastor: string;
     favVerse: string;
     location: string;
     phoneNo: string[];
+    raised: number;
+    target: number;
+}
+
+export class BranchMediaDTO {
+    public constructor(init?:Partial<BranchMediaDTO>) {
+        Object.assign(this, init);
+    }
+    id: number;
+    title: string;
+    url: string;
+    description: string;
+    platform: string;
+    dateCreated: string;
+    createdBy: string;
+}
+
+export class BranchServiceDTO {
+    id: number;
+    day: string;
+    time: string;
+}
+
+export class BranchDTO {
+    public constructor(init?:Partial<BranchDTO>) {
+        Object.assign(this, init);
+    }
+    id: number;
+    name: string;
+    dateCreated: string;
+    city: string;
+    location: string;
+    state: string;
+    isBranchHq: boolean;
+    street: string;
+    eventVm: string[];
+    donationVm: string[];
+    liveStreamVm: string[];
+    mediaVm: BranchMediaDTO[];
+    sliderVm: string [];
+    services: BranchServiceDTO [];
 }

@@ -10,10 +10,11 @@ export interface SingleEventItem {
     subText: string,
     locationTitle: string,
     title: string,
+    id: number,
 };
 
 const EventItem:FC<SingleEventItem> = (data: SingleEventItem) => {
-    const {bgImage, startDatetime, endDatetime, datetimeCurrentRange, location, subText, locationTitle, title} = data;
+    const {bgImage, startDatetime, endDatetime, datetimeCurrentRange, location, subText, locationTitle, title, id} = data;
     
     return (
         <div className="list_col grid">
@@ -48,7 +49,7 @@ const EventItem:FC<SingleEventItem> = (data: SingleEventItem) => {
                 <div className="col">
                     <div className="read_more">
                         <div className="line_bar"></div>
-                        <h5>Read More</h5>
+                        <a href={`/web/event?id=${id}`}><h5>Read More</h5></a>
                     </div>
                 </div>
             </div>
