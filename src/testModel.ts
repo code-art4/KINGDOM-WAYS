@@ -4,8 +4,9 @@ import { BranchItemDTO, BranchMediaDTO } from "./dto/Branch.dto";
 import DonateItemDTO from "./dto/Donate.dto";
 import { LiveStreamDTO } from "./dto/LiveStream.dto";
 import ShopItemDTO from "./dto/ShopItem.dto";
+import UserDTO from "./dto/User.dto";
 
-export const BranchesModel: BranchItemDTO[] = [
+export let BranchesModel: BranchItemDTO[] = [
     {
         description: "24 Prince Ibrahim Eletu Avenue, Shoprite Circle Mall Road Jakande Bus Stop, Ikeja, Lagos ",
         timers: [
@@ -236,7 +237,7 @@ export const BranchesModel: BranchItemDTO[] = [
     },  
 ];
 
-export const DonationsModel: DonateItemDTO[] = [
+export let DonationsModel: DonateItemDTO[] = [
     {
         title: "Build church school",
         description: "Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitationullamo laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, sed do eiusmo temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.",
@@ -281,7 +282,7 @@ export const DonationsModel: DonateItemDTO[] = [
     }
 ];
 
-export const ShopItemsModel: ShopItemDTO[] = [
+export let ShopItemsModel: ShopItemDTO[] = [
     {
       img: "/images/product-5-600x772.png",
       title: "LISTEN BELIEVE",
@@ -365,7 +366,7 @@ export const ShopItemsModel: ShopItemDTO[] = [
 
 ];
 
-export const EventData: SingleEventItem[] = [
+export let EventData: SingleEventItem[] = [
     {
         bgImage:"/images/pexels-luis.png",
         location:"24 Prince Ibrahim Eletu Avenue, Shoprite Circle Mall Road Jakande Bus Stop, Osapa London,Lagos",
@@ -390,7 +391,7 @@ export const EventData: SingleEventItem[] = [
     }
 ];
 
-export const BlogData: BlogDTO[] = [
+export let BlogData: BlogDTO[] = [
     {
         title: "Christmas day",
         by: "By Green onwn",
@@ -457,7 +458,7 @@ export const BlogData: BlogDTO[] = [
     },
 ];
 
-export const LiveStreamData: LiveStreamDTO[] = [
+export let LiveStreamData: LiveStreamDTO[] = [
     {
         dateOfStream: "2021-12-25T00:00:00",
         description: "Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.",
@@ -507,5 +508,24 @@ export const LiveStreamData: LiveStreamDTO[] = [
         id: 5,
         views: 0,
         preacher: "KWLC Pastor",
+    },
+];
+
+export let UserData: UserDTO[] = [
+    {
+        id: 2,
+        firstName: "RalphTest",
+        lastName: "RalTest",
+        username: "SelfTest",
+        emailAddress: "self@gmail.com",
+        address: "Plot 213",
+    },
+    {
+        id: 1,
+        firstName: "Nonso Test",
+        lastName: "UdenwaniTest",
+        username: "NollyTest",
+        emailAddress: "nolly190@gmail.com",
+        address: "Plot 123",
     },
 ];

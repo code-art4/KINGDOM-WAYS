@@ -22,7 +22,7 @@ export async function checkUserLoggedIn(): Promise<Boolean> {
     const data: LoginAccessDTO = localStorage.getItem("userData");
     if (data === null) {
        //user is logged in
-       const response = await Login({username, password});
+       const response = await WebLogin({username, password});
        return true;
     }
     else if (data != null) {
@@ -32,6 +32,15 @@ export async function checkUserLoggedIn(): Promise<Boolean> {
     else {
         return false;
     }
+}
+
+export const log = (period="earlydev", message?: any, ...optionalParams: any[]) => {
+   
+   if (period == "earlydev") {
+      //only log the stage/period you want
+      console.log("earlydev",message, optionalParams);
+   }
+   
 }
 
 function PrepareData(Data, type = "json") {
@@ -67,8 +76,17 @@ export function getMessage(result) {
  }
 
 export async function showMessage(param1, parm2, param3) {
-
 }
+
+export async function showAdminMessage(param1, parm2) {
+   alert(`${param1}: ${parm2}`);
+}
+
+export function showConfirmDialog(title:string, description: string = "", options: string[]=[]) {
+   return confirm(title);
+}
+
+export function uuidv4() {}
 
 export async function Request(
     Base,
@@ -96,28 +114,24 @@ export async function Request(
       //  await Login({username, password});
     }
 
-    console.log("headers: " + headers);
+    log("earlydev","headers: ", headers);
 
  
     const fetchOptions =
-       method.toUpperCase() === "POST"
-          ? {
-               method: method,
-               headers: headers,
-               body: !PreparedData ? PrepareData(Data) : Data,
-            }
-          : {
-               method: method,
-               headers: headers,
-            }
+         {
+            method: method,
+            headers: headers,
+            body: !PreparedData ? PrepareData(Data) : Data,
+         }
     return fetch(Base + Url, fetchOptions)
        .then((response) => {
-          console.log("1st", JSON.stringify(response), Base + Url)
+          log("earlydev","1st", JSON.stringify(response), Base + Url)
           return response.json()
        })
        .then((data) => {
-          let keys = Object.keys(data)
-          if (keys.indexOf("statusCode") != -1) {
+          let keys = Object.keys(data);
+          console.log("keys", data);
+          if (keys.indexOf("statusCode") != -1 || data.ResponseMessage == "An Error Occured, please try again" || data.status == 400) {
              // error occured
              if (
                 getMessage(data) ==
@@ -140,8 +154,8 @@ export async function Request(
        })
  }
 
- export async function getRequest(Base, Url, token = undefined, method="GET") {
-    console.log("base", Base, " url", Url)
+ export async function getRequest(Base, Url, token = undefined, method="GET", data=undefined, PrepareData=false) {
+    log("earlydev","base", Base, " url", Url)
     let headers = {
        Accept: "application/json",
        "Content-Type": "application/json",
@@ -158,18 +172,32 @@ export async function Request(
       // await Login({username, password});
    }
 
-    console.log("headers: ", headers);
+    log("earlydev","headers: ", headers);
+
+    let url = Base + Url;
+    if (data != undefined && !PrepareData) {
+      url = new URL(Base + Url);
+      let search = new URLSearchParams(data).toString();
+      
+      url = url+"?"+search;
+      // convert json object to url params for get request
+    }
+
+    let options = {
+      method: method,
+      headers: headers,
+   };
+   if (PrepareData) {
+      options['body'] = data;
+   }
  
-    return fetch(Base + Url, {
-       method: method,
-       headers: headers,
-    })
+    return fetch(url, options)
        .then((response) => {
-          console.log("1st", JSON.stringify(response), Base + Url)
+          log("earlydev","1st", JSON.stringify(response), Base + Url)
           return response.json()
        })
        .then((data) => {
-          console.log("2nd", JSON.stringify(data), Base + Url)
+          log("earlydev","2nd", JSON.stringify(data), Base + Url)
  
           let keys = Object.keys(data)
           if (keys.indexOf("statusCode") != -1) {
@@ -189,19 +217,22 @@ export async function Request(
           return data
        })
        .catch((error) => {
-          console.log(JSON.stringify(error))
+          log("earlydev",JSON.stringify(error))
           return { status: false, message: error.message }
        })
 }
 
-let username: string = "";
-let password: string = "";
-let hashlidEncoDecode: HashlidEncoDecode;
-let cryptoEncodeDecode: CryptoEncodeDecode;
-let localStorage;
-
-
-export const removeFromLocalStorage = (key: string) => {
+export function prepareMedia(image) {
+   // image crop picker
+   return {
+       uri: image.path,
+       width: image.width,
+       height: image.height, 
+       mime: image.mime,
+       name: image.fileName || image.modificationDate,
+    };
+ }
+ export const removeFromLocalStorage = (key: string) => {
    localStorage.removeItem(key);
 }
 
@@ -224,11 +255,10 @@ export const getFromLocalStorage = (key: string) => {
 
 export const Logout = async ({username, password}) => {
     localStorage.clear();
-    await Login({ username, password});
+    await WebLogin({ username, password});
 }
 
-export const Login = async ({username, password}) => {
-   return;
+export const WebLogin = async ({username, password}) => {
    const loginData:string = getFromLocalStorage("userData");
    let loginInfo;
    
@@ -238,14 +268,14 @@ export const Login = async ({username, password}) => {
          loginObject = JSON.parse(loginObject);
       }
       
-      console.log("isExpired", moment(new Date()).isAfter(moment(loginObject.expiryDate)), new Date(), loginObject.expiryDate, typeof loginObject);
+      log("earlydev","isExpired", moment(new Date()).isAfter(moment(loginObject.expiryDate)), new Date(), loginObject.expiryDate, typeof loginObject);
       if (moment(new Date()).isAfter(moment(loginObject.expiryDate))) {
          // return;
       }
-      console.log("makeing api i");
+      log("earlydev","makeing api i");
       //expired make new call
    }
-   console.log("makeing api ii");
+   log("earlydev","makeing api ii");
    
    //make api call
    loginInfo = await loginApi(new LoginModelDTO({ username, password}));
@@ -259,8 +289,8 @@ export const Login = async ({username, password}) => {
 }
 
 const getToken = async (): Promise<string> => {
-   //EXpDate: 2022-01-12T02:02:57Z 
-   let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6ImYzNDFiYjU5LTcxYTItNDYyNS1hMzQ2LTM4YTQ2YjZiYWNhNSIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsImV4cCI6MTY0Mjc0MDkzNSwiaXNzIjoiS3dsYyIsImF1ZCI6IlNlY3VyZUFwaVVzZXIifQ.x8mJPXnghawyQ4GcDxVZMfMRfcbVSUBJoIx63T3N5Ao";
+   //let token = "";
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6Ijk1YWY4NDkxLTZiYjQtNDhiOC04MjM5LWI3ZTk3NGEzOWViZiIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsInJvbGVzIjpbIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJwZXJtaXNzaW9ucyI6WyJDYW5Bc3NpZ25BZG1pblRvQnJhbmNoIiwiQ2FuVmlld0Rhc2hib2FyZCIsIlN1cGVyQWRtaW4iXSwiZXhwIjoxNjQzNTAwOTM3LCJpc3MiOiJLd2xjIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.mevsntm26cpEn0O_oJkLBaIL1ImZUZzAtgSz2QxYuGM";
     return token;
     
     let rawData: string = getFromLocalStorage("userData");
@@ -277,6 +307,21 @@ const getToken = async (): Promise<string> => {
     return token;
 }
 
+export function toTitleCase(str) {
+   return str.replace(
+     /\w\S*/g,
+     function(txt) {
+       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+     }
+   );
+ }
+
+let username: string = "";
+let password: string = "";
+let hashlidEncoDecode: HashlidEncoDecode;
+let cryptoEncodeDecode: CryptoEncodeDecode;
+let localStorage;
+
 export const initApp = (
     userData: LoginModelDTO, 
     hashids: HashlidEncoDecode,
@@ -284,12 +329,20 @@ export const initApp = (
     _cryptoEncodeDecode: CryptoEncodeDecode,
     ) => {
     if (!fakeModel)  {
-      username = userData.username;
-      password = userData.password;
-      hashlidEncoDecode = hashids;
-      localStorage = localStorageObj;
-      cryptoEncodeDecode = _cryptoEncodeDecode;
-      Login({username, password});
+       if (username) {
+         username = userData.username;
+         password = userData.password;
+         WebLogin({username, password});
+       }
+      if (hashlidEncoDecode) {
+         hashlidEncoDecode = hashids;
+      }
+      if (localStorageObj) {
+         localStorage = localStorageObj;
+      }
+      if (cryptoEncodeDecode) {
+         cryptoEncodeDecode = _cryptoEncodeDecode;
+      }
     }
     else {
 

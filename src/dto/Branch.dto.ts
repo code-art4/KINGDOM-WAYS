@@ -16,7 +16,7 @@ export class BranchItemDTO {
     target: number;
 }
 
-export class BranchMediaDTO {
+export class BranchMediaDTO {   
     public constructor(init?:Partial<BranchMediaDTO>) {
         Object.assign(this, init);
     }
@@ -30,6 +30,9 @@ export class BranchMediaDTO {
 }
 
 export class BranchServiceDTO {
+    public constructor(init?:Partial<BranchServiceDTO>) {
+        Object.assign(this, init);
+    }
     id: number;
     day: string;
     time: string;

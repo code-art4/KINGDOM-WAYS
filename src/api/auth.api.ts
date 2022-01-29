@@ -18,7 +18,7 @@ export async function loginApi(data): Promise<ResponseDTO> {
    
    try {
       
-      let res : LoginDTO = await Request(urls.baseUrl, urls.login, data,true, "post",  "");
+      let res : LoginDTO = await Request(urls.baseUrl, urls.v1 + urls.login, data,false, "post",  "");
       // const hashlidEncoDecode: HashlidEncoDecode = new HashlidEncoDecode(saltConst);
       let userData: LoginAccessDTO;
       if (res.status) {

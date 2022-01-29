@@ -16,7 +16,8 @@ export default function Payments() {
                 externalStyles={["/styles/css/style.css"]}
                 navbar={"web"}
                 title={"Shop"}
-                withFooter={true}
+                withFooter={true} 
+                withSideBar={false}                
             >
                 <div className="shop">
                     <div className="shopNow">Shop Now</div>

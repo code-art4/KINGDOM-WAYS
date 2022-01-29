@@ -25,8 +25,8 @@ const SingleBranch = () => {
             externalStyles={["/styles/css/donation.css"]}
             navbar={"web"}
             title="Church Branches"
-            withFooter={true}
-        >
+            withFooter={true} withSideBar={false}        
+            >
             <div className="eachBranch">
                 <div className="hero-banner-area">
                     <img src={((item.image && item.image.url != "") ? item.image?.url : BranchesModel[0].image.url)} alt="" />
