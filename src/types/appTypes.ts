@@ -4,5 +4,5 @@ export interface LayoutProps {
     navbar: string;
     title: string;
     withFooter: boolean;
-    withSideBar: boolean;
+    withSideBar?: boolean;
  }

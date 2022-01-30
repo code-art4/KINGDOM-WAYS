@@ -8,7 +8,8 @@ export default function BlogDetail() {
                 externalStyles={["/styles/css/style.css"]}
                 navbar={"web"}
                 title="Blog"
-                withFooter={false}
+                withFooter={false} 
+                withSideBar={false}
             >
                 {/* <BlogBanner /> */}
                 <div className="main_container">

@@ -519,6 +519,7 @@ export let UserData: UserDTO[] = [
         username: "SelfTest",
         emailAddress: "self@gmail.com",
         address: "Plot 213",
+        email: "nolly190@gmail.com",
     },
     {
         id: 1,
@@ -527,5 +528,6 @@ export let UserData: UserDTO[] = [
         username: "NollyTest",
         emailAddress: "nolly190@gmail.com",
         address: "Plot 123",
+        email: "nolly190@gmail.com",
     },
 ];

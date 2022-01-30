@@ -5,10 +5,11 @@ export default function Web404() {
     return (
         <>
             <Layout
-            title="Well, we are lost."
-            withFooter={true}
-            navbar={"web"}
-            externalStyles={["/styles/css/donation.css"]}
+                title="Well, we are lost."
+                withFooter={true}
+                navbar={"web"}
+                externalStyles={["/styles/css/donation.css"]} 
+                withSideBar={false}
             >
                 <div className="main_container d-flex flex-column justify-content-center">
                     <section className="col">
