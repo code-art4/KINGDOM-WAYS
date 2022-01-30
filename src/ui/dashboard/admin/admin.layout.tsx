@@ -63,26 +63,26 @@ const AdminLayout: React.FC<LayoutProps> = (
                       
                         <AdminNavItem url="" iconTitle="dashboard" title="Dashboard" isActive={false} />
                         <AdminNavItem 
-                          url="get-all-users" 
+                          url="/admin/get-all-users" 
                           iconTitle="person" 
                           title="Users"  
                           isActive={false} 
                         />
                         <AdminNavItem 
-                          url="get-all-branches" 
+                          url="/admin/get-all-branches" 
                           iconTitle="book_online" 
                           title="Branches"  
                           isActive={false} 
                         />
                         <AdminNavItem 
-                          url="get-all-donations" 
+                          url="/admin/get-all-donations" 
                           iconTitle="add_alert" 
                           title="Donations"  
                           isActive={false} 
                         />
                         <AdminNavItem url="" iconTitle="menu_book" title="Blog"  isActive={false} />
                         <AdminNavItem 
-                          url="get-all-livestream" 
+                          url="/admin/get-all-livestream" 
                           iconTitle="camera" 
                           title="Livestream"  
                           isActive={false} 

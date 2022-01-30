@@ -290,7 +290,7 @@ export const WebLogin = async ({username, password}) => {
 
 const getToken = async (): Promise<string> => {
    //let token = "";
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6Ijk1YWY4NDkxLTZiYjQtNDhiOC04MjM5LWI3ZTk3NGEzOWViZiIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsInJvbGVzIjpbIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJwZXJtaXNzaW9ucyI6WyJDYW5Bc3NpZ25BZG1pblRvQnJhbmNoIiwiQ2FuVmlld0Rhc2hib2FyZCIsIlN1cGVyQWRtaW4iXSwiZXhwIjoxNjQzNTAwOTM3LCJpc3MiOiJLd2xjIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.mevsntm26cpEn0O_oJkLBaIL1ImZUZzAtgSz2QxYuGM";
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6ImUxMGI0ZjFlLTcxMGMtNDdiZC04N2VjLTdjYWY1ODQ3NDkxOCIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsInJvbGVzIjpbIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJwZXJtaXNzaW9ucyI6WyJDYW5Bc3NpZ25BZG1pblRvQnJhbmNoIiwiQ2FuVmlld0Rhc2hib2FyZCIsIlN1cGVyQWRtaW4iXSwiZXhwIjoxNjQzNTc1OTg5LCJpc3MiOiJLd2xjIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.ggonQe9Y2RIy3km9zDtEmvNhWF77LyutHilvo-3ecUc";
     return token;
     
     let rawData: string = getFromLocalStorage("userData");
