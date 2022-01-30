@@ -57,7 +57,7 @@ export async function getSingleBranchApi(id: number): Promise<ResponseDTO> {
          // localStorage.setItem("userData", hashlidEncoDecode.encode(JSON.stringify(userData)));
          response.data = data;
          // showMessage(getMessage(res), res.status, localStorage);
-      response.code = statusEnum.ok;
+         response.code = statusEnum.ok;
       }      
    }
    catch(e) {

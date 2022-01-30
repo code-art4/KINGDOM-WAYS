@@ -14,9 +14,13 @@ const LiveStreamMDItem:FC<SingleLiveStreamItem>  = (data: SingleLiveStreamItem) 
                 </div>
                 <div className="column">
                 <div className="title">{title}</div>
-                <div className="preacher">{preacher}</div>
+                {
+                    preacher && <div className="preacher">{preacher}</div>
+                }
+                
                 <div className="date">{readDatetime}</div>
-                <div className="views">{views}k <span>Views</span></div>
+                {views && <div className="views">{views}k <span>Views</span></div>}
+                
                 </div>
             </div>
         </div>

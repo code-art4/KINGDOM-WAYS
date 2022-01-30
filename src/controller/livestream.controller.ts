@@ -6,7 +6,7 @@ import { fakeModel } from "../utils";
 
 
 export async function loadLiveStreamWeb(setItems: Function, setItem: Function) {
-    if (!fakeModel) {
+    if (fakeModel) {
         let items: LiveStreamDTO[] = LiveStreamData;
         if (items.length > 0) {
             
@@ -32,7 +32,7 @@ export async function loadLiveStreamWeb(setItems: Function, setItem: Function) {
 }
 
 export async function loadPreviousLiveStreamWeb(setItems: Function) {
-    if (!fakeModel) {
+    if (fakeModel) {
         let items: LiveStreamDTO[] = LiveStreamData;
         if (items.length > 0) {
             setItems(items.length > 0 ? items.slice(1): []);

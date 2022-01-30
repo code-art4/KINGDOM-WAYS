@@ -9,18 +9,17 @@ import Layout from "../layout";
 export default function DonationIntro () {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        loadDonations(setItems);
+        loadDonations(setItems, items);
     },[]);
     
     console.log("items", items);
     return (
         <>
         <Layout
-            externalStyles={["/styles/css/donation.css"]}
-            navbar={"web"}
-            title="Donate"
-            withFooter={true}
-        >
+                externalStyles={["/styles/css/donation.css"]}
+                navbar={"web"}
+                title="Donate"
+                withFooter={true} withSideBar={false}        >
             <div className="hero-banner-area">
                 <img src="/images/donation-hero-banner.png" alt="" />
                 <div className="hero-banner-area-text">
@@ -39,7 +38,7 @@ export default function DonationIntro () {
         <div className="content-container row">
             {
                 
-                items.map((x, index) => {
+                items.length > 0 && items.map((x, index) => {
                         const element = <RenderDonationItem 
                             key={index}
                             img={x.image} 
@@ -47,7 +46,6 @@ export default function DonationIntro () {
                             description={x.description.substring(0, 100)}
                             href={`/web/donate?id=${x.id}`}
                         />;    
-                        console.log("Rendering", element);
                         return element;
                     })
                 // : undefined

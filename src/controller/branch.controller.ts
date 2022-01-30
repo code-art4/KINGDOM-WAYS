@@ -4,10 +4,10 @@ import { BranchDTO, BranchItemDTO, BranchMediaDTO } from "../dto/Branch.dto";
 import { ResponseDTO } from "../dto/response.dto";
 import { statusEnum } from "../enums/util.enum";
 import { BranchesModel, DonationsModel } from "../testModel";
-import { fakeModel } from "../utils";
+import { fakeModel, log } from "../utils";
 import { BlogDTO } from "./../dto/Blog.dto";
 
-export async function loadBranchData(setList: Function) {
+export async function loadBranchData(setList: Function, items: BranchItemDTO[]) {
     try {
         if (fakeModel) {
             const data:BranchItemDTO[] = BranchesModel;
@@ -15,35 +15,45 @@ export async function loadBranchData(setList: Function) {
             setList(data);
         }
         else {
-            
+            console.log("items", items);
             const response: ResponseDTO = await getBranchesApi();
             if (response.code < statusEnum.ok) {
                 throw new Error(response.extra_data.toString());
             }
             const data:BranchDTO[] = response.data;
             const branchData:BranchItemDTO[] = [];
-            
-            data && data.length > 0 && data.map((i) => {
+            data && data.length > 0 && data.forEach(async (i) => {
+                
+                const innerResponse: ResponseDTO = await getSingleBranchApi((i.id));
+                // if (innerResponse.code < statusEnum.ok) {
+                //     return;
+                // }
+                const innerData:BranchDTO = innerResponse.data;
+                
                 const record = new BranchItemDTO({
                     title: i.name,
-                    timers: i.services,
+                    timers: innerData?.services ?? [],
                     description: i.location,
                     favVerse: "",
                     id: i.id,
-                    image: i.mediaVm.length > 0 ? i.mediaVm[0] : new BranchMediaDTO(),
+                    image: innerData?.mediaVm?.length > 0 ? innerData?.mediaVm[0] : new BranchMediaDTO(),
                     leadPastor: "Pastor Ken",
                     location: i.location,
                     phoneNo: [],
                 });
+                console.log("branchData running", record, branchData);
     
                 branchData.push(record);
+                items = items.concat([record]);
+                setList(items);
+                
             });
-            
-            setList(branchData);
+            // console.log("branchData", branchData);
+            // setList(branchData);
         }
     }
     catch(e) {
-        console.error(e);
+        log("earlydev",e);
     }
 }
 

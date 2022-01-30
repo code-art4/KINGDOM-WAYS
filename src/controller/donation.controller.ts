@@ -5,7 +5,7 @@ import { statusEnum } from "../enums/util.enum";
 import { DonationsModel } from "../testModel";
 import { fakeModel } from "../utils";
 
-export const loadDonations = async (setItem: Function) => {
+export const loadDonations = async (setItem: Function, items: DonateItemDTO[]) => {
     try {
         if (fakeModel) {
             const donateItem = DonationsModel;
@@ -30,21 +30,25 @@ export const loadDonations = async (setItem: Function) => {
                 
                 if (singleResponse.code >= statusEnum.ok) {
                     //singleResponse.data
-                    donationData.push(new DonateItemDTO({
+                    const _donationData = new DonateItemDTO({
                         description: singleResponse.data.description,
                         id: singleResponse.data.id,
+                        // donationImages: singleResponse.data.donationImages.map(x => x.imageUrl),
                         image: singleResponse.data.donationImages?.filter(x => x.isMainImage)[0]?.imageUrl,
                         images: singleResponse.data.donationImages.map(x => x.imageUrl),
                         raised: 0,
                         target: 0,
                         title: i.title
-                    }));
+                    });
+                    donationData.push();
+                    items = items.concat([_donationData])
+                    setItem(items);
                 }
             });
-            if (donationData.length > 0) {
-                console.log("setting data", donationData);
-                setItem(donationData);
-            }
+            // if (donationData.length > 0) {
+            //     console.log("setting data", donationData);
+            //     setItem(donationData);
+            // }
             
         }
     } catch (error) {

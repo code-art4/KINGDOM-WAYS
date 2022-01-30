@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import BranchItem from "../../../../components/branch-item";
 import { loadBranchData } from '../../../../controller/branch.controller';
-import { BranchesModel } from "../../../../testModel";
-import { fakeModel } from "../../../../utils";
 
 export default  function BranchContent() {
     const [items, setItems] = useState([]);
+    console.log("items i", items);
     useEffect(() => {
-        loadBranchData(setItems);
+        loadBranchData(setItems, items);
     },[]);
-    
-    const testData = BranchesModel;
     
     return (
         <>  

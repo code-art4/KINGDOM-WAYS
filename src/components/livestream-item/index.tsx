@@ -20,7 +20,7 @@ const LiveStreamItem:FC<SingleLiveStreamItem> = (data: SingleLiveStreamItem) => 
             </div>
             <div className="column second">
                 <div className="title">{title}</div>
-                <div className="preacher">{preacher}</div>
+                {/* <div className="preacher">{preacher}</div> */}
                 <div className="date">{readDatetime}</div>
             </div>
         </div>
