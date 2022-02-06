@@ -13,7 +13,7 @@ import { HashlidEncoDecode } from "../encodeDecode";
 import { ResponseDTO } from "../dto/response.dto";
 import { statusEnum } from "../enums/util.enum";
 import { DonationItemDTO } from "../dto/Donate.dto";
-import { BranchDTO, BranchItemDTO } from "../dto/Branch.dto";
+import { BranchAssignAdminDTO, BranchDTO, BranchItemDTO } from "../dto/Branch.dto";
 
 export async function getBranchesApi(): Promise<ResponseDTO> {
    const response = new ResponseDTO();
@@ -97,6 +97,44 @@ export async function editBranchApi(id:number, requetData: BranchDTO): Promise<R
    
    try {
       let res = await Request(urls.baseUrl, urls.updateBranch +"/"+ id, requetData, false, "PUT");
+      let data: BranchDTO;
+      if (res.status) {
+         data = res.data;
+         
+         response.data = data;
+         response.code = statusEnum.ok;
+      }
+   }
+   catch(e) {
+      response.message = e.toString();
+   }
+   return response.getResponse();
+}
+
+export async function deleteBranchApi(id:number): Promise<ResponseDTO> {
+   const response = new ResponseDTO();
+   
+   try {
+      let res = await getRequest(urls.baseUrl, urls.deleteBranch + id, undefined, "DELETE");
+      let data: BranchDTO;
+      if (res.status) {
+         data = res.data;
+         
+         response.data = data;
+         response.code = statusEnum.ok;
+      }
+   }
+   catch(e) {
+      response.message = e.toString();
+   }
+   return response.getResponse();
+}
+
+export async function branchAssignAdminApi(requetData: BranchAssignAdminDTO): Promise<ResponseDTO> {
+   const response = new ResponseDTO();
+   
+   try {
+      let res = await Request(urls.baseUrl, urls.branchAssignAdmin , requetData, false, "PUT");
       let data: BranchDTO;
       if (res.status) {
          data = res.data;

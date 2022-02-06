@@ -1,7 +1,8 @@
 import moment from "moment";
-import { createBranchApi, editBranchApi, getBranchesApi, getSingleBranchApi } from "../../api/branch.api";
+import { branchAssignAdminApi, createBranchApi, deleteBranchApi, editBranchApi, getBranchesApi, getSingleBranchApi } from "../../api/branch.api";
 import { getAllUsersApi, registerUser } from "../../api/user.api";
-import { BranchDTO, BranchServiceDTO } from "../../dto/Branch.dto";
+import { BranchAssignAdminDTO, BranchDTO, BranchServiceDTO } from "../../dto/Branch.dto";
+import PastorDTO from "../../dto/Pastor.dto";
 import UserDTO from "../../dto/User.dto";
 import { statusEnum } from "../../enums/util.enum";
 import { CRUDBL } from "../../interfaces/CRUDBL.interface";
@@ -79,8 +80,20 @@ export class BranchController implements CRUDBL {
             showAdminMessage("success", "Branch update request Sent");
         }
     }
-    async delete() {
-
+    async delete(id: number, setItems: Function, items: BranchDTO[]) {
+        const result = showConfirmDialog('Confirm Delete');
+        if (result) {
+            if (fakeModel) {
+                setItems(items.filter(x => x.id != id));
+            } {
+                const response = await deleteBranchApi(id);
+                if (response.code < statusEnum.ok) {
+                    showAdminMessage("error", response.message.toString());
+                }
+        
+                setItems(items.filter(x => x.id != id));
+            }
+        }
     }
     async bulk() {
         
@@ -114,5 +127,39 @@ export class BranchController implements CRUDBL {
         if (result) {
             setServices(services.filter((x, i) => x.id != id));
         }
+    }
+    async assignAdminToBranch(data:BranchAssignAdminDTO) {
+        if (fakeModel) {
+            showAdminMessage("success", "Assign to Branch was successful");
+        }
+        else {
+            delete data.id;
+            branchAssignAdminApi(data).then((response) => {
+                if (response.code >= statusEnum.ok) {
+                    showAdminMessage("success", "Assign to Branch was successful");
+                    
+                }
+                else {
+                    showAdminMessage("error", "Assign to Branch update failed");
+                }
+            });
+            showAdminMessage("success", "Assign to Branch request Sent");
+        }
+    }
+
+    renderPastor(pastors: PastorDTO[], branchId: number): string {
+        let _pastor = "n/a";
+        
+        pastors && pastors.length > 0 && pastors.map(pastor => {
+            if (pastor.branches && pastor.branches.length > 0) {
+                for(let i = 0; i < pastor.branches.length; i++) {
+                    const branch = pastor.branches[i];
+                    if (branch.branchId == branchId) {
+                        _pastor =`${pastor.fullName}`;
+                    }
+                }
+            }
+        });
+        return _pastor;
     }
 }

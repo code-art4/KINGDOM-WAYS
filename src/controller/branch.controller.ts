@@ -15,7 +15,6 @@ export async function loadBranchData(setList: Function, items: BranchItemDTO[]) 
             setList(data);
         }
         else {
-            console.log("items", items);
             const response: ResponseDTO = await getBranchesApi();
             if (response.code < statusEnum.ok) {
                 throw new Error(response.extra_data.toString());
@@ -41,7 +40,6 @@ export async function loadBranchData(setList: Function, items: BranchItemDTO[]) 
                     location: i.location,
                     phoneNo: [],
                 });
-                console.log("branchData running", record, branchData);
     
                 branchData.push(record);
                 items = items.concat([record]);

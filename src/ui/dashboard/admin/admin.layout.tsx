@@ -87,7 +87,12 @@ const AdminLayout: React.FC<LayoutProps> = (
                           title="Livestream"  
                           isActive={false} 
                         />
-                        <AdminNavItem url="" iconTitle="shopping_cart" title="Market Place"  isActive={false} />
+                        <AdminNavItem 
+                          url="/admin/get-all-shop-items" 
+                          iconTitle="shopping_cart" 
+                          title="Market Place"  
+                          isActive={false} 
+                        />
                         <AdminNavItem url="" iconTitle="edit" title="Edit Profile"  isActive={false} />
                         <AdminNavItem url="" iconTitle="exit_to_app" title="Logout" isActive={false} />
                         <li className="nav-item active-pro ">

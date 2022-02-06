@@ -57,3 +57,14 @@ export class BranchDTO {
     sliderVm: string [];
     services: BranchServiceDTO [];
 }
+
+export class BranchAssignAdminDTO {
+    public constructor(init?:Partial<BranchAssignAdminDTO>) {
+        Object.assign(this, init);
+    }
+    id: number;
+    userId: number;
+    branchId: number;
+    userType: string;
+    isResidential: boolean;
+}

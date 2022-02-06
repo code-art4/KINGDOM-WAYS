@@ -1,9 +1,10 @@
-import { getShopItemsApi } from "../api/shop.api";
+import { getShopItemsApi, getSingleShopItemApi } from "../api/shop.api";
 import { ResponseDTO } from "../dto/response.dto";
 import ShopItemDTO, { ShopDTO } from "../dto/ShopItem.dto";
+import ShopItemInformationDTO from "../dto/ShopItemInfo.dto";
 import { statusEnum } from "../enums/util.enum";
 import { ShopItemsModel } from "../testModel"
-import { fakeModel } from "../utils"
+import { fakeModel, showMessage } from "../utils"
 
 export const initShopTopItems = (setTopItems: Function) => {
     if (fakeModel) {
@@ -22,7 +23,7 @@ export const initShopLeftItems = async (setTopItems: Function) => {
     {
         const response: ResponseDTO = await getShopItemsApi();
         if (response.code < statusEnum.ok) {
-            throw new Error(response.extra_data.toString());
+            showMessage("error", "An error occurred", "Please try again to fetch product(s)");
         }
 
         const data:ShopDTO[] = response.data;
@@ -39,41 +40,18 @@ export const initShopLeftItems = async (setTopItems: Function) => {
                 information: [
                     {
                         key: "weight",
-                        value: "10kg",
+                        value: x.weight,
                     },
                     {
                         key: "dimension",
-                        value: "2.2",
-                    }
-                ]
-
-        }));
-
-        //remove on deploy or demo
-        data && data.length > 0 && data.reverse().map(x => {
-            _data.push(new ShopItemDTO({
-                copies: x.quantity,
-                description: x.description,
-                id: x.id,
-                price: x.price,
-                title: x.title,
-                img: (x.productImages.length > 0 ? x.productImages[0].imageUrl : ""),
-                images: (x.productImages.length > 0 ? x.productImages.map(x => x.imageUrl) : []),
-                information: [
-                    {
-                        key: "weight",
-                        value: "10kg",
-                    },
-                    {
-                        key: "dimension",
-                        value: "2.2",
+                        value: x.dimension,
                     }
                 ],
             }));
         });
         
-});
-    }  
+        setTopItems(_data);
+    }
 }  
 
 export const shopRelatedItems = (setTopItems: Function) => {
@@ -86,7 +64,7 @@ export const shopRelatedItems = (setTopItems: Function) => {
 }
 
 
-export const shopLoadItem = (setItem: Function, id: string) => {
+export const shopLoadItem = async (setItem: Function, id: string) => {
     if (fakeModel) {
         const product = ShopItemsModel.filter(x => x.id.toString() == id);
         if (product.length > 0) {
@@ -94,7 +72,32 @@ export const shopLoadItem = (setItem: Function, id: string) => {
         }
     }
     else {
+        const response = await getSingleShopItemApi(parseInt(id));
+            if (response.code < statusEnum.ok) {
+                showMessage("error", "An error occurred", response.message.toString());
+            }
 
+
+            const data:ShopDTO = response.data;
+
+            setItem(new ShopItemDTO({
+                copies: data.price,
+                description: data.description,
+                images: data.productImages.length >0 ? data.productImages.map(x => x.imageUrl)  : [],
+                img: data.productImages.length > 0 ? data.productImages[0].imageUrl: "",
+                information: [
+                    new ShopItemInformationDTO({
+                        key: 'weight',
+                        value: data.weight
+                    }),
+                    new ShopItemInformationDTO({
+                        key: 'dimension',
+                        value: data.dimension
+                    }),
+                ],
+                price: data.price,
+                title: data.title,
+            }));
     }
 }
 

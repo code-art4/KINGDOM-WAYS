@@ -16,6 +16,10 @@ export default function ProductDetail() {
         shopLoadItem(setItem, id);
         shopRelatedItems(setRelatedItem);
     }, []);
+
+    const onPurchase =  () => {
+        
+    }
     
     return (
         <Layout
@@ -62,25 +66,25 @@ export default function ProductDetail() {
                                 }}></i> 
                                 <span>{quantity}</span>
                                 <i className="fa fa-chevron-right" onClick={() => {
-                                    if (quantity < item.copies) setQuantity(quantity+1);
+                                    if (quantity <= item.copies) setQuantity(quantity+1);
                                 }}></i>
                             </form>
-                            <button className="button">Purchase</button>
+                            <button className="button" onClick={() => onPurchase()}>Purchase</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="moreInfo">
                     <div className="tabs">
-                        <div className="tablinks" onClick={(e) => shopOpenTab(e, 'Discription')}>
+                        <div className="tablinks" onClick={(e) => shopOpenTab(e, 'Description')}>
                             Description
                         </div>
-                        <div className="tablinks" onClick={(e) => shopOpenTab(e, 'AdditionalInformation')}>
+                        <div className="tablinks active" onClick={(e) => shopOpenTab(e, 'AdditionalInformation')}>
                             Additional Information
                         </div>
                     </div>
 
-                    <div id="Discription" className="tabcontent">
+                    <div id="Description" className="tabcontent">
                         <p>
                             {item.description}
                         </p>

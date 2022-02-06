@@ -1,50 +1,44 @@
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import {BranchController} from "../../../../controller/admin/branch.controller";
-import { PastorController } from "../../../../controller/admin/pastor.controller";
+import { DonationController } from "../../../../controller/admin/donation.controller";
+import { ShopController } from "../../../../controller/admin/shop.controller";
 import { BranchDTO } from "../../../../dto/Branch.dto";
-import PastorDTO from "../../../../dto/Pastor.dto";
+import DonateItemDTO from "../../../../dto/Donate.dto";
+import { ShopDTO } from "../../../../dto/ShopItem.dto";
 import UserDTO from "../../../../dto/User.dto";
 import AdminLayout from "../admin.layout";
 
-export default function GetAllBranches() {
-    const _tmp: BranchDTO[] = [];
-    const _tmpPastors: PastorDTO[] = [];
-    
+export default function GetAllShopItems() {
+    const _tmp: ShopDTO[] = [];
     const [items, setItems] = useState(_tmp);
-    const [pastors, setPastors] = useState(_tmpPastors);
     
     useEffect(() => {
-        console.log(_tmpPastors);
-        branchController.list(setItems);
-        pastorController.list(setPastors);
+        controller.list(setItems);
     }, []);
 
-    const branchController: BranchController = new BranchController();
-    const pastorController: PastorController = new PastorController();
+    const controller: ShopController = new ShopController();
     
     return (
     <>
     <AdminLayout
         externalStyles={[]}
         navbar={""}
-        title={"Dashboard"}
+        title={"Products"}
         withFooter={false}
         withSideBar={true}
     >
+
         <div className="row">
             <div className="col-md-12">
                 <div className="card">
                     <div className="card-header card-header-primary">
                         <div className="nav-tabs-navigation">
                             <div className="nav-tabs-wrapper">
-                                <span className="nav-tabs-title">Branch</span>
+                                <span className="nav-tabs-title">Dashboard</span>
                                 <ul className="nav nav-tabs" data-tabs="tabs">
-                                    <li className="nav-item mr-2">
-                                        <a href={"/admin/addbranch"} className="nav-link active" data-toggle="tab">Register New Branch</a>
-                                    </li>
                                     <li className="nav-item">
-                                        <a href={"/admin/branch-assign-admin"} className="nav-link active" data-toggle="tab">Assign Admin to Branch</a>
+                                        <a href={"/admin/addproduct"} className="nav-link active" data-toggle="tab">Create New Product</a>
                                     </li>
                                 </ul>
                             </div>
@@ -59,10 +53,8 @@ export default function GetAllBranches() {
                             >
                                 <thead className=" text-primary">
                                 <th>Title</th>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Pastor</th>
-                                <th>Is HQ</th>
+                                <th>Amount</th>
+                                <th>Quantity</th>
                                 <th>Date Created</th>
                                 <th></th>
                                 <th></th>
@@ -72,21 +64,23 @@ export default function GetAllBranches() {
                                         items.length > 0 ? items.map((x, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td onClick={() => window.location.href=`/item/${x.id}`}>{x.name}</td>
-                                                    <td> {x.state}</td>
-                                                    <td> {x.city}</td>
-                                                    <td> 
-                                                        {
-                                                            branchController.renderPastor(pastors, x.id)
-                                                        }
+                                                    <td onClick={() => window.location.href=`/get-donation?id=${x.id}`}>
+                                                        {x.title}
                                                     </td>
-                                                    <td> {x.isBranchHq ? "Yes": "No"}</td>
-                                                    <td> {moment(x.dateCreated).format('DD/MMM/yyyy')}</td>
+                                                    <td> 
+                                                        {x.price}
+                                                    </td>
+                                                    <td> 
+                                                        {x.quantity}
+                                                    </td>
+                                                    <td> 
+                                                        {moment(x.dateCreated).format('yyyy/MM/DD')}
+                                                    </td>
                                                     
                                                     <td className="text-primary">
                                                     <a 
                                                         onClick={() => {
-                                                            window.location.href = "/admin/edit-branch?id=" + x.id;
+                                                            window.location.href = "/admin/edit-shopitem?id=" + x.id;
                                                         }}
                                                         className="btn btn-primary pull-right text-white" 
                                                         >
@@ -96,7 +90,15 @@ export default function GetAllBranches() {
                                                     <td className="text-primary">
                                                     <a 
                                                         onClick={() => {
-                                                            branchController.delete(x.id, setItems, items);
+                                                            alert('delete');
+                                                            return;
+                                                            const result = prompt('Confirm Delete');
+                                                            if (result) {
+                                                                //"/questionnaire/delete/[id]" 
+                                                            }
+                                                            else {
+
+                                                            }
                                                         }}
                                                         className="btn btn-primary pull-right text-white" 
                                                         >

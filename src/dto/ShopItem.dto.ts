@@ -16,7 +16,7 @@ export default class ShopItemDTO {
 
 
 export class ShopDTO {
-    public constructor(init?:Partial<ShopItemDTO>) {
+    public constructor(init?:Partial<ShopDTO>) {
         Object.assign(this, init);
     }
     id: number;
@@ -24,7 +24,7 @@ export class ShopDTO {
     price: number;
     description: string;
     weight: string;
-    dimension: number;
+    dimension: string;
     quantity: number;
     dateCreated: string;
     productImages: ShopImageDTO[];

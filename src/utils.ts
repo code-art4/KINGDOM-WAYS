@@ -85,8 +85,13 @@ export async function showAdminMessage(param1, parm2) {
 export function showConfirmDialog(title:string, description: string = "", options: string[]=[]) {
    return confirm(title);
 }
+export function showPrompt() {
+   const result = prompt('Confirm Delete');
+}
 
-export function uuidv4() {}
+export function uuidv4() {
+   return moment(new Date()).format('yyyyMMDDhhmmss');
+}
 
 export async function Request(
     Base,
@@ -126,16 +131,25 @@ export async function Request(
     return fetch(Base + Url, fetchOptions)
        .then((response) => {
           log("earlydev","1st", JSON.stringify(response), Base + Url)
+          if (response.status == 401) {
+            Logout({username, password});
+         }
           return response.json()
        })
        .then((data) => {
           let keys = Object.keys(data);
           console.log("keys", data);
-          if (keys.indexOf("statusCode") != -1 || data.ResponseMessage == "An Error Occured, please try again" || data.status == 400) {
+          if (
+              keys.indexOf("statusCode") != -1 || 
+              data.ResponseMessage == "An Error Occured, please try again" || 
+              data.status == 400 || 
+              data.status == 401
+            ) {
              // error occured
              if (
                 getMessage(data) ==
-                "Unauthorized Access. You are using an expired token"
+                "Unauthorized Access. You are using an expired token" ||
+                data.status == 401
              ) {
                 //log user out, token expired, re-login needed
                 Logout({username: username, password: password});
@@ -193,18 +207,28 @@ export async function Request(
  
     return fetch(url, options)
        .then((response) => {
-          log("earlydev","1st", JSON.stringify(response), Base + Url)
+          log("earlydev","1st", JSON.stringify(response.status), Base + Url)
+          if (response.status == 401) {
+             Logout({username, password});
+          }
           return response.json()
        })
        .then((data) => {
           log("earlydev","2nd", JSON.stringify(data), Base + Url)
  
           let keys = Object.keys(data)
-          if (keys.indexOf("statusCode") != -1) {
+          if (
+              keys.indexOf("statusCode") != -1 || 
+              data.ResponseMessage == "An Error Occured, please try again" || 
+              data.status == 400 || 
+              data.status == 401
+             ) {
              // error occured
              if (
                 getMessage(data) ==
                 "Unauthorized Access. You are using an expired token"
+                ||
+                data.status == 401
              ) {
                 //log user out, token expired, re-login needed
                 Logout({username: username, password: password});
@@ -213,11 +237,11 @@ export async function Request(
           } else {
              data.status = true
           }
- 
+
           return data
        })
        .catch((error) => {
-          log("earlydev",JSON.stringify(error))
+          log("earlydev","error",(error))
           return { status: false, message: error.message }
        })
 }
@@ -239,7 +263,7 @@ export function prepareMedia(image) {
 export const writeToLocalStorage = (key: string, data: string) => {
    removeFromLocalStorage(key);
    if (cryptoEncodeDecode != null ) {
-      localStorage.setItem(key, cryptoEncodeDecode.encode(JSON.stringify(data)));
+      localStorage.setItem(key, cryptoEncodeDecode.encode((data)));
    }
 }
 
@@ -255,7 +279,13 @@ export const getFromLocalStorage = (key: string) => {
 
 export const Logout = async ({username, password}) => {
     localStorage.clear();
-    await WebLogin({ username, password});
+    if (window.location.href.includes("admin")) {
+       window.location.href = "/admin/login";
+    }
+    else {
+      await WebLogin({ username, password});
+    }
+    
 }
 
 export const WebLogin = async ({username, password}) => {
@@ -289,9 +319,9 @@ export const WebLogin = async ({username, password}) => {
 }
 
 const getToken = async (): Promise<string> => {
-   //let token = "";
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6ImUxMGI0ZjFlLTcxMGMtNDdiZC04N2VjLTdjYWY1ODQ3NDkxOCIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsInJvbGVzIjpbIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJwZXJtaXNzaW9ucyI6WyJDYW5Bc3NpZ25BZG1pblRvQnJhbmNoIiwiQ2FuVmlld0Rhc2hib2FyZCIsIlN1cGVyQWRtaW4iXSwiZXhwIjoxNjQzNTc1OTg5LCJpc3MiOiJLd2xjIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.ggonQe9Y2RIy3km9zDtEmvNhWF77LyutHilvo-3ecUc";
-    return token;
+   let token = "";
+   token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6IjA1ZWVhMjMxLTA2YzYtNDRmYS05NTkzLWZiMzZmM2E0ZTIxZSIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsInJvbGVzIjpbIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJwZXJtaXNzaW9ucyI6WyJDYW5Bc3NpZ25BZG1pblRvQnJhbmNoIiwiQ2FuVmlld0Rhc2hib2FyZCIsIlN1cGVyQWRtaW4iXSwiZXhwIjoxNjQ0MTAzODM4LCJpc3MiOiJLd2xjIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.ckrRT3K51EKfmixAmCVYk-x0Lx0e-5L2ohPtUR7qPtQ";
+   return token;
     
     let rawData: string = getFromLocalStorage("userData");
     

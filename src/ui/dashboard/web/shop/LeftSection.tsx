@@ -9,6 +9,8 @@ export default function ShopLeftSection() {
     const emptyTopItems: ShopItemDTO[] = [];
     
     const [items, setItems] = useState(emptyTopItems);
+    const [page, setPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     useEffect(() => {
         initShopLeftItems(setItems);
@@ -17,7 +19,12 @@ export default function ShopLeftSection() {
     return (
         <div className="column left">
           <div className="setSearch">
-            <div className="result">Showing 1/9 of 15 results</div>
+            <div className="result">
+                Showing 
+                {`${page}/${itemsPerPage} of ` + items.length} 
+                {/* 1/9 of 15  */}
+                {' '} results
+            </div>
             <div className="default">Default Sorting</div>
           </div>
           <div className="products">

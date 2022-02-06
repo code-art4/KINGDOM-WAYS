@@ -11,6 +11,10 @@ export class BlogDTO {
     date: Date;
     image: string;
     href: string = "";
+    tags: string[];
+    aboutAuthor: string;
+    blogCategory: string;
+    blogImages: BlogItemImageDTO[];
 }
 
 export class BlogAudioDTO extends BlogDTO {

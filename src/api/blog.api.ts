@@ -44,7 +44,7 @@ export async function getSingleBlogApi(id: number): Promise<ResponseDTO> {
    const response = new ResponseDTO();
    
    try {
-      let res = await getRequest(urls.baseUrl, urls.branch + "/" + id);
+      let res = await getRequest(urls.baseUrl, urls.getblog + id);
       //alert(JSON.stringify(res));
       // const hashlidEncoDecode: HashlidEncoDecode = new HashlidEncoDecode(saltConst);
       let data: BranchDTO;

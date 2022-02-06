@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getBlogApi } from "../api/blog.api";
+import { getBlogApi, getSingleBlogApi } from "../api/blog.api";
 import { ResponseDTO } from "../dto/response.dto";
 import { statusEnum } from "../enums/util.enum";
 import { BlogData } from "../testModel";
@@ -46,6 +46,44 @@ export async function loadBlogData(setList: Function) {
             });
 
             setList(branchData);
+        }
+    }
+    catch(e) {
+        console.error(e);
+    }
+    
+}
+
+export async function loadBlog(setItem: Function, id: number) {
+    try {
+
+        if (fakeModel) {
+            setItem(BlogData);
+        }
+        else {
+            const response: ResponseDTO = await getSingleBlogApi(id);
+            if (response.code < statusEnum.ok) {
+                throw new Error(response.extra_data.toString());
+            }
+
+            const data:BlogItemDTO = response.data;
+            const branchData:BlogDTO[] = [];
+
+            setItem(new BlogDTO({
+                by: data.authorName,
+                date: new Date(data.dateCreated),
+                description: data.message,
+                href: "",
+                id: data.id,
+                image: data.blogImages.length > 0 ? data.blogImages[0].imageUrl : "",
+                itemType: "text",
+                title: data.title,
+                tags: data.tags,
+                aboutAuthor: data.aboutAuthor,
+                blogCategory: data.blogCategory,
+                blogImages: data.blogImages,
+
+            }));
         }
     }
     catch(e) {

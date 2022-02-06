@@ -1,7 +1,32 @@
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { loadBlog } from "../../../../controller/blog.controller";
+import { BlogAudioDTO } from "../../../../dto/Blog.dto";
+import { getParam } from "../../../../utils";
 import HomePageFooter from "../footer";
 import Layout from "../layout";
 
 export default function BlogDetail() {
+    const blogData: BlogAudioDTO = new BlogAudioDTO();
+
+    const [item, setItem] = useState(blogData);
+    const [idParam, setIdParam] = useState(0);
+    
+    useEffect(() => {
+        getBlog();
+    }, []);
+
+    const getBlog = () => {
+        const id = getParam("id");
+        if (!id) {
+            window.location.href = "/admin/";
+        }
+        else {
+            loadBlog(setItem, parseInt(id));
+            setIdParam(parseInt(id));
+        }
+    }
+    
     return (
         <div>
             <Layout
@@ -25,60 +50,49 @@ export default function BlogDetail() {
                     <section className="blog_grid">
                         <article className="blog_article">
                             <div className="blogpost_col">
-                                <img className="blog_img" src="/images/pexels-anna-shvets.png" alt="Blog Image" />
-                                <span className="content_date"><h5>19.11.2021</h5></span>
+                                <img className="blog_img" src={item.image} alt="Blog Image" />
+                                <span className="content_date"><h5>{moment(item?.date).format("DD.MM.yyyy")}</h5></span>
                             </div>
                             <div className="blogpost_content">
                                 <div className="blogpost_title">
-                                    <h3 className="section_title">Easter Sunday</h3>
-                                    <p><span className="small_text">By Pastor ken</span></p>
+                                    <h3 className="section_title">{item.title}</h3>
+                                    <p><span className="small_text">By {item.by}</span></p>
                                 </div>
                                 <p className="paragraph">
-                                    Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore 
-                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris 
-                                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                                    velit esse. Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore 
-                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut 
-                                    aliquip ex ea commodo consequat. <br/>
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing 
-                                    elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-                                    nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                                <blockquote>
-                                    “ Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor 
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim”
-                                </blockquote>
-                                <p className="paragraph">
-                                    Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat. 
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, 
-                                    sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                    exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.
+                                    {item.description}
                                 </p>
                                 <div className="blogpost_img">
-                                    <div className="img_col"><img src="/images/pexels-cottonbro-3972000.png" alt=""/></div>
-                                    <div className="img_col"><img src="/images/pexels-cottonbro-3972178.png" alt=""/></div>
+                                    {
+                                        item.blogImages && item.blogImages.length > 0 ? item.blogImages.map((x,i) => {
+                                            return (
+                                                <div key={i} className="img_col">
+                                                    <img src={x.imageUrl} alt="" style={{maxWidth: 450, maxHeight: 250}}/>
+                                                </div>
+                                            );
+                                        }) : undefined
+                                    }
                                 </div>
-                                <p className="paragraph">
-                                    Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat. 
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse. Dolor sit amet, consectetur adipiscing elit, 
-                                    sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                    exercitation ullamo laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
 
                                 {/* <!-- TAGS --> */}
                                 <div className="tags">
-                                    <h4>TAGS:</h4> <p><span>Congratulations</span></p>
+                                    <h4>TAGS:</h4> 
+                                    {
+                                        item.tags && item.tags.length > 0 ? item.tags.map((x, i) => {
+                                            return  (
+                                                <p key={i}>
+                                                    <span>{x}</span>
+                                                </p>
+                                            );
+                                        }) : undefined
+                                    }
                                 </div>
                             </div>
                             <div className="content_publisher">
                                 <img src="/images/ken 2.png" alt="Pastor Ken"/>
                                 <div className="publisher_info">
-                                    <h4>Pastor Ken</h4>
+                                    <h4>{item.by}</h4>
                                     <p className="grey_text">
-                                        Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. 
-                                        Ut enim ad minim veniam, quis. 
+                                        {item.aboutAuthor}
                                     </p>
                                 </div>
                             </div>
@@ -100,13 +114,14 @@ export default function BlogDetail() {
                             <div className="about_author">
                                 <div className="author_col">
                                     <img src="/images/ken 2.png" alt="Pastor Ken"/>
-                                    <div className="signature"><img src="images/ksign.png" alt=" Pastor Ken signature"/></div>
+                                    {/* <div className="signature">
+                                        <img src="images/ksign.png" alt=" Pastor Ken signature"/>
+                                    </div> */}
                                 </div>
                                 <div className="author_bio">
                                     <h4>About Author</h4>
                                     <p className="grey_text">
-                                        Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore 
-                                        et dolore magna aliqua. Ut enim ad minim veniam, quis.
+                                        {item.aboutAuthor}
                                     </p>
                                 </div>
                             </div>
@@ -115,10 +130,7 @@ export default function BlogDetail() {
                             <div className="side_containers">
                                 <h4>Category</h4>
                                 <ul>
-                                    <li><span>Sunday Sermon</span></li>
-                                    <li><span>Bible Quotes</span></li>
-                                    <li><span>Daily devotion</span></li>
-                                    <li><span>Inspirations</span></li>
+                                    <li><span>{item.blogCategory}</span></li>
                                 </ul>
                             </div>
 

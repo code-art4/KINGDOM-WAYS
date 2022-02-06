@@ -35,6 +35,10 @@ export default function BlogContent() {
                                 title={x.title}
                                 key={index}
                                 href={`/web/blog-post?id=${x.id}`}
+                                aboutAuthor={x.aboutAuthor}
+                                blogCategory={x.blogCategory}
+                                blogImages={x.blogImages}
+                                tags={x.tags}
                             />
                         );
                     }
@@ -50,6 +54,10 @@ export default function BlogContent() {
                                 title={x.title}
                                 key={index}
                                 href={`/web/blog-post?id=${x.id}`}
+                                aboutAuthor={x.aboutAuthor}
+                                blogCategory={x.blogCategory}
+                                blogImages={x.blogImages}
+                                tags={x.tags}
                             />
                         );
                     }

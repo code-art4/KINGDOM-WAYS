@@ -395,12 +395,16 @@ export let BlogData: BlogDTO[] = [
     {
         title: "Christmas day",
         by: "By Green onwn",
-        description: "Dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis",
+        description: "If you want to understand who God is, you need to understand all of who God is. Getting your head around the difference between God the Father and Jesus is one thing. But many struggle to grasp who the Holy Spirit is in a way they could explain clearly to someone else.\r\n\r\nGod is one God, but three persons. That’s not a simple idea to get to grips with.\r\n\r\nWhen theologians speak of the three-in-oneness of God, they refer to Him as “the Trinity.” The Trinity is God the Father, God the Son (Jesus) and God the Holy Spirit.\r\n\r\nUnderstanding who the Holy Spirit is, the place He holds within the Holy Trinity and the role He plays in individual lives is vital to anyone exploring what it means to become a Christian and anyone trying to follow Jesus.\r\n\r\nKnowing the Holy Spirit will radically change your life because He is the way you will experience the life of God within you.\r\n\r\nSo let’s take a deep dive into this topic and see how He can transform you.",
         itemType: "text",
         id: 1,
         date: new Date(),
         image: "/images/pexels-josh-sorenson.png",
         href: "",
+        tags: ["Education", "Religion"],
+        aboutAuthor: "So just as you need oxygen to live in your human body, if you trust in Christ, you are born again in a spiritual sense and the Holy Spirit becomes the source of new life God places within you. You no longer just relate to God as a higher power outside of yourself. God transforms you from within so that you become more like Jesus.",
+        blogCategory: "Religion",
+        blogImages: [{id: 0, imageUrl: "/images/pexels-josh-sorenson.png"}],
     },
     new BlogAudioDTO ({
         title: "Christmas day",
@@ -423,6 +427,10 @@ export let BlogData: BlogDTO[] = [
         image: "/images/pexels-any-lane.png",
         date: new Date(),
         href: "",
+        tags: ["Education", "Religion"],
+        aboutAuthor: "So just as you need oxygen to live in your human body, if you trust in Christ, you are born again in a spiritual sense and the Holy Spirit becomes the source of new life God places within you. You no longer just relate to God as a higher power outside of yourself. God transforms you from within so that you become more like Jesus.",
+        blogCategory: "Religion",
+        blogImages: [{id: 0, imageUrl: "/images/pexels-josh-sorenson.png"}],
     },
     {
         title: "Christmas day",
@@ -433,6 +441,10 @@ export let BlogData: BlogDTO[] = [
         date: new Date(),
         image: "/images/pexels-josh-sorenson.png",
         href: "",
+        tags: ["Education", "Religion"],
+        aboutAuthor: "So just as you need oxygen to live in your human body, if you trust in Christ, you are born again in a spiritual sense and the Holy Spirit becomes the source of new life God places within you. You no longer just relate to God as a higher power outside of yourself. God transforms you from within so that you become more like Jesus.",
+        blogCategory: "Religion",
+        blogImages: [{id: 0, imageUrl: "/images/pexels-josh-sorenson.png"}],
     },
     new BlogAudioDTO ({
         title: "Open Prayer",
@@ -445,6 +457,7 @@ export let BlogData: BlogDTO[] = [
         timerStart: "0:00",
         timerEnd: "5:23",
         timerCurrent: "",
+        tags: ["Education", "Religion"],
     }),
     {
         title: "Easter Sunday",
@@ -455,6 +468,10 @@ export let BlogData: BlogDTO[] = [
         image: "/images/pexels-any-lane.png",
         date: new Date(),
         href: "",
+        tags: ["Education", "Religion"],
+        aboutAuthor: "So just as you need oxygen to live in your human body, if you trust in Christ, you are born again in a spiritual sense and the Holy Spirit becomes the source of new life God places within you. You no longer just relate to God as a higher power outside of yourself. God transforms you from within so that you become more like Jesus.",
+        blogCategory: "Religion",
+        blogImages: [{id: 0, imageUrl: "/images/pexels-josh-sorenson.png"}],
     },
 ];
 
