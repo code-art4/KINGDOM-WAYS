@@ -40,6 +40,8 @@ export default function PreviousLiveStreamContent() {
                   title={x.title}
                   videoUrl={x.liveStreamUrl}
                   views={x.views}
+                  onEnd={() => {}}
+                  onError={() => {}}
                 />
               );
             })

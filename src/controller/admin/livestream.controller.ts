@@ -10,7 +10,7 @@ import { CRUDBL } from "../../interfaces/CRUDBL.interface";
 import { BranchesModel, DonationsModel, LiveStreamData } from "../../testModel";
 import { ISetDonation } from "../../ui/dashboard/admin/donation/edit";
 import { ISetLivestream } from "../../ui/dashboard/admin/livestream/edit";
-import { fakeModel, showAdminMessage,log } from "../../utils";
+import { fakeModel, showAdminMessage,log, youtubeParser } from "../../utils";
 
 export class LiveStreamController implements CRUDBL {
     async create(data:LiveStreamDTO, branchId: string) {
@@ -26,17 +26,24 @@ export class LiveStreamController implements CRUDBL {
                 showAdminMessage("success", "Stream Created");
             }
             else {
-                createStreamApi(data, parseInt(branchId)).then((response) => {
-                    log("earlydev",response);
-                    if (response.code >= statusEnum.ok) {
-                        showAdminMessage("success", "Stream Creation was successful");
-                        
-                    }
-                    else {
-                        showAdminMessage("error", "Stream Creation failed");
-                    }
-                });
-                showAdminMessage("success", "Stream Creation request Sent");
+                let _url = youtubeParser(data.liveStreamUrl);
+                if (_url == ''){
+                    showAdminMessage("error", "Youtube video link expected.");
+                }
+                else {
+                    data.liveStreamUrl = _url;
+                    createStreamApi(data, parseInt(branchId)).then((response) => {
+                        log("earlydev",response);
+                        if (response.code >= statusEnum.ok) {
+                            showAdminMessage("success", "Stream Creation was successful");
+                            
+                        }
+                        else {
+                            showAdminMessage("error", "Stream Creation failed");
+                        }
+                    });
+                    showAdminMessage("success", "Stream Creation request Sent");
+                }
             }
         }
         catch(e) {
@@ -73,18 +80,24 @@ export class LiveStreamController implements CRUDBL {
         }
         else {
             // data.donationImages.forEach(x => delete x.id)
-            
-            editStreamApi(data, id).then((response) => {
-                log("earlydev", "1",response);
-                if (response.code >= statusEnum.ok) {
-                    showAdminMessage("success", "Stream update was successful");
-                    
-                }
-                else {
-                    showAdminMessage("error", "Stream update failed");
-                }
-            });
-            showAdminMessage("success", "Stream update request Sent");
+            let _url = youtubeParser(data.liveStreamUrl);
+            if (_url == ''){
+                showAdminMessage("error", "Youtube video link expected.");
+            }
+            else {
+                data.liveStreamUrl = _url;
+                editStreamApi(data, id).then((response) => {
+                    log("earlydev", "1",response);
+                    if (response.code >= statusEnum.ok) {
+                        showAdminMessage("success", "Stream update was successful");
+                        
+                    }
+                    else {
+                        showAdminMessage("error", "Stream update failed");
+                    }
+                });
+                showAdminMessage("success", "Stream update request Sent");
+            }
         }
     }
     async delete() {

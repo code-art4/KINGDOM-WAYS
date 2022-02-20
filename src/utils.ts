@@ -18,6 +18,12 @@ export function mmFormat(datetime: string, format: string = "hh:mm a"): string{
     return moment(datetime).format(format);
 }
 
+export function youtubeParser(url){
+   var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+   var match = url.match(regExp);
+   return (match && match[1].length == 11) ? match[1] : '';
+}
+
 export async function checkUserLoggedIn(): Promise<Boolean> {
     const data: LoginAccessDTO = localStorage.getItem("userData");
     if (data === null) {
@@ -320,8 +326,8 @@ export const WebLogin = async ({username, password}) => {
 
 const getToken = async (): Promise<string> => {
    let token = "";
-   token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6IjA1ZWVhMjMxLTA2YzYtNDRmYS05NTkzLWZiMzZmM2E0ZTIxZSIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsInJvbGVzIjpbIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJwZXJtaXNzaW9ucyI6WyJDYW5Bc3NpZ25BZG1pblRvQnJhbmNoIiwiQ2FuVmlld0Rhc2hib2FyZCIsIlN1cGVyQWRtaW4iXSwiZXhwIjoxNjQ0MTAzODM4LCJpc3MiOiJLd2xjIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.ckrRT3K51EKfmixAmCVYk-x0Lx0e-5L2ohPtUR7qPtQ";
-   return token;
+   // token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJOb2xseSIsImp0aSI6IjA1ZWVhMjMxLTA2YzYtNDRmYS05NTkzLWZiMzZmM2E0ZTIxZSIsImVtYWlsIjoibm9sbHkxOTBAZ21haWwuY29tIiwiVXNlcklkIjoiMSIsInJvbGVzIjpbIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJwZXJtaXNzaW9ucyI6WyJDYW5Bc3NpZ25BZG1pblRvQnJhbmNoIiwiQ2FuVmlld0Rhc2hib2FyZCIsIlN1cGVyQWRtaW4iXSwiZXhwIjoxNjQ0MTAzODM4LCJpc3MiOiJLd2xjIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.ckrRT3K51EKfmixAmCVYk-x0Lx0e-5L2ohPtUR7qPtQ";
+   // return token;
     
     let rawData: string = getFromLocalStorage("userData");
     

@@ -1,10 +1,4 @@
 import Layout from "../layout";
-import NavBar from "../navbar";
-import Head from 'next/head'
-import HomePageFooter from "../footer";
-import { fakeModel } from "../../../../utils";
-import ShopFilter from "./Banner";
-import ShopContent from "./Content";
 import ShopRightSection from "./RightSection";
 import ShopLeftSection from "./LeftSection";
 

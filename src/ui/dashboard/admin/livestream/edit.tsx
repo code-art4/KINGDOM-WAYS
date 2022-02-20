@@ -7,7 +7,7 @@ import { LiveStreamController } from "../../../../controller/admin/livestream.co
 import { BranchDTO, BranchServiceDTO } from "../../../../dto/Branch.dto";
 import DonateItemDTO, { DonationImageDTO, DonationItemDTO } from "../../../../dto/Donate.dto";
 import { LiveStreamDTO } from "../../../../dto/LiveStream.dto";
-import { getParam, showConfirmDialog } from "../../../../utils";
+import { getParam, showConfirmDialog, youtubeParser } from "../../../../utils";
 import AdminLayout from "../admin.layout";
 
 export interface ISetLivestream {
@@ -37,6 +37,7 @@ export default function EditLiveStream() {
     useEffect(() => {
         branchController.list(setBranches);
         getBranch();
+        //console.log(youtube_parser("https://www.youtube.com/watch?v=gVN83R-JwRQ"));
     }, []);
 
     let controller: LiveStreamController = new LiveStreamController();
@@ -73,7 +74,6 @@ export default function EditLiveStream() {
             isActive: true,
         }), id);
     }
-    console.log("streamDate", streamDate);
     
     return(
         <AdminLayout

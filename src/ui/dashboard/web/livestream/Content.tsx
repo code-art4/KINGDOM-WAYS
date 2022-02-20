@@ -3,6 +3,7 @@ import LiveStreamItem from "../../../../components/livestream-item";
 import { loadLiveStreamWeb } from "../../../../controller/livestream.controller";
 import { LiveStreamDTO } from "../../../../dto/LiveStream.dto";
 import { getParam } from "../../../../utils";
+import YouTube from 'react-youtube';
 
 export default function LiveStreamContent() {
   
@@ -24,16 +25,30 @@ export default function LiveStreamContent() {
           <div className="livStream">
             <div className="row">
               <div className="column left">
-                <h3>Live</h3>
-                <video width="100%" height="auto" controls>
+                <h3>Stream</h3>
+{/*                 <video width="100%" height="auto" controls>
                   <source src={item.liveStreamUrl} type="video/mp4" />
                 </video>
-                {/* main */}
+                
                 <div className="lieViews">
                     <div className="text">Live</div>
                     <i className="fas fa-eye"></i>
                     <div className="amount">{item.views}k</div>
-                </div>
+                </div> */}
+                <YouTube
+                  videoId={item.liveStreamUrl}                  // defaults -> null 
+                  id={item.id?.toString()}                       // defaults -> null
+                  title={item.title}                    // defaults -> null
+                  onEnd={() => {
+                    console.log("ended");
+                  }}                      // defaults -> noop
+                  onError={() => {
+                    console.log("error");
+                  }}                    // defaults -> noop
+                  onStateChange={(d) => {
+                    console.log("state changed", d);
+                  }}              // defaults -> noop
+                />
                 <div className="aboutService">
                   <h4>{item.title}</h4>
                   <p>
@@ -55,6 +70,8 @@ export default function LiveStreamContent() {
                             title={x.title}
                             videoUrl={x.liveStreamUrl}
                             views={x.views}
+                            onEnd={() => {}}
+                            onError={() => {}}
                           />
                         );
                       })

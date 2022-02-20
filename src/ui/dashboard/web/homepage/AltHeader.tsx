@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import DonateBtn from '../../../../components/donate-btn';
+import { NavMenu } from '../navbar';
 
 export default function AltHomePageHeader() {
     
@@ -47,9 +48,8 @@ export default function AltHomePageHeader() {
 
                     {/* <!----------Navigation Links---------> */}
                     <div className="nav_menu" id="nav-menu">
-                        <ul className="nav_list nav-list">
+                        {/* <ul className="nav_list nav-list">
                             <li className="nav_item">
-                                {/* <a href="indexDonate.html" className="nav_link"><button className="btn"> <i className="fa fa-gift" aria-hidden="true"></i>Donate</button></a> */}
                                 <DonateBtn />
                             </li>
                             <li className="nav_item">
@@ -74,7 +74,6 @@ export default function AltHomePageHeader() {
                             <li className="nav_item">
                                 <a href={"/web/shop"} className="nav_link">Shop</a>
                             </li>
-                            {/* <!-------Dropdown menu-------> */}
                             <div className="dropdown">
                                 <div className="nav_tog">
                                     <div className="bar b1" id="bar1"></div>
@@ -90,7 +89,8 @@ export default function AltHomePageHeader() {
                             </div>
                             <li className="nav_item"><a href="search" className="nav_link txt_white"><i className="fa fa-search" aria-hidden="true"></i></a></li>
                             <li className="nav_item"><a href="checkout.html" className="nav_link"><i className="icofont-shopping-cart"></i></a></li>
-                        </ul>
+                        </ul> */}
+                        <NavMenu alt={true} />
                     </div>
                     {/* <!---------Menu bars--------> */}
                     <div className="nav_toggle" onClick={() => onClickMenu()} id="nav-toggle">

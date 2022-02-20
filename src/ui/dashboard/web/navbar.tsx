@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import DonateBtn from "../../../components/donate-btn";
 
 export default function NavBar() {
     let hamburgerMenuRef = useRef(false);
@@ -32,7 +33,7 @@ export default function NavBar() {
 
                     {/* <!----------Navigation Links---------> */}
                     <div className="nav_menu" id="nav-menu">
-                        <ul className="nav_list">
+                        {/* {<ul className="nav_list">
                             <li className="nav_item">
                                 <a href={"/web"} className="nav_link">Home</a>
                             </li>
@@ -56,14 +57,12 @@ export default function NavBar() {
                                     <i className="icofont-shopping-cart"></i>
                                 </a>
                             </li>
-                            {/* <div className="nav_item"> */}
                                 <div className="dropdown">
                                     <div className="nav_tog">
                                         <div className="bar b1" id="bar1"></div>
                                         <div className="bar b2" id="bar2"></div>
                                         <div className="bar b3" id="bar3"></div>
                                     </div>
-                                    {/* <input className="drop_input" id="toggle" type="checkbox" checked/> */}
                                     <ul className="dropdown_contents">
                                         <li className="dropdown_menu"><a href="about.html" className="nav_link">About us</a></li>
                                         <li className="dropdown_menu"><a href="#" className="nav_link">Our Team</a></li>
@@ -73,8 +72,8 @@ export default function NavBar() {
                                         <li className="dropdown_menu"><a href="#" className="nav_link">Payment page</a></li>
                                     </ul>
                                 </div>
-                            {/* </div> */}
-                        </ul>
+                        </ul>} */}
+                        <NavMenu />
                     </div>
 
                     {/* <!-------Menu bars--------> */}
@@ -91,5 +90,66 @@ export default function NavBar() {
                     </div>
                 </nav>
             </header>
+    );
+}
+
+
+export const NavMenu = ({alt=false}) => {
+    return (
+        <ul className="nav_list nav-list">
+            {alt &&
+                <li className="nav_item">
+                    {/* <a href="indexDonate.html" className="nav_link"><button className="btn"> <i className="fa fa-gift" aria-hidden="true"></i>Donate</button></a> */}
+                    <DonateBtn />
+                </li>
+            }
+            <li className="nav_item">
+                <a href={"/web/"} className="nav_link">Home</a></li>
+            <li className="nav_item">
+                <a href={"/web/payment"} className="nav_link">Payment</a>
+            </li>
+            <li className="nav_item">
+                <a href={"/web/donations"} className="nav_link">Donations</a>
+            </li>
+            {
+                alt &&
+                <li className="nav_item">
+                    <a href={"/web/"} className="nav_link">
+                        <img src="/images/KWLClogo.svg" alt="KWLC Logo"/>
+                    </a>
+                </li>
+            }
+            {/* <li className="nav_item">
+                <a href={"/web/events"} className="nav_link">Events</a>
+            </li> */}
+            <li className="nav_item">
+                <a href={"/web/livestream"} className="nav_link">Stream</a>
+            </li>
+            <li className="nav_item">
+                <a href={"/web/blog"} className="nav_link">Blog</a>
+            </li>
+            <li className="nav_item">
+                <a href={"/web/shop"} className="nav_link">Shop</a>
+            </li>
+            {/* <!-------Dropdown menu-------> */}
+            <div className="dropdown">
+                <div className="nav_tog">
+                    <div className="bar b1" id="bar1"></div>
+                    <div className="bar b2" id="bar2"></div>
+                    <div className="bar b3" id="bar3"></div>
+                </div>
+                <ul className="dropdown_contents">
+                    <li className="dropdown_menu"><a href={"/web/404/"}className="nav_link">About us</a></li>
+                    <li className="dropdown_menu">
+                        <a href="#" className="nav_link">Our Team</a></li>
+                    <li className="dropdown_menu"><a href={"/web/branches"} className="nav_link">Branches</a></li>
+                </ul>
+            </div>
+            <li className="nav_item"><a href="search" className={"nav_link " + (alt ? "txt_white" : "txt_black")}><i className="fa fa-search" aria-hidden="true"></i></a></li>
+            {
+            alt && 
+                <li className="nav_item"><a href="checkout.html" className="nav_link"><i className="icofont-shopping-cart"></i></a></li>
+            }
+        </ul>
     );
 }
