@@ -35,7 +35,7 @@ export const urls = {
     ...{
         // baseUrl: "http://nolly19o-001-site10.itempurl.com/api/",
         // baseUrl: "http://localhost:8010/proxy/api/",
-        baseUrl: "https://kwlc-web.herokuapp.com/",
+        baseUrl: "https://kwlc-web.herokuapp.com/api/",
         v1: "v1/",
         "login": "User/Login/Login",
     },
