@@ -53,7 +53,9 @@ export async function getSingleShopItemApi(id: number): Promise<ResponseDTO> {
 
          
          //save user profile info
+         
          data = res.data;
+         data.description 
          
          // localStorage.setItem("userData", hashlidEncoDecode.encode(JSON.stringify(userData)));
          response.data = data;

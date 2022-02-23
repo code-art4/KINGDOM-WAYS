@@ -75,6 +75,7 @@ export const shopLoadItem = async (setItem: Function, id: string) => {
         const response = await getSingleShopItemApi(parseInt(id));
             if (response.code < statusEnum.ok) {
                 showMessage("error", "An error occurred", response.message.toString());
+                return response;
             }
 
 

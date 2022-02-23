@@ -12,6 +12,7 @@ import LocationArea from './locationArea';
 import HomePageFooter from './../footer';
 import Layout from "../layout";
 import AltHomePageHeader from './AltHeader';
+import Autocomplete from "react-google-autocomplete";
 
 
 
@@ -19,6 +20,12 @@ import AltHomePageHeader from './AltHeader';
 
 
 export default function HomePage() {
+  // return (
+  //   <Autocomplete
+  //     apiKey={"AIzaSyD3MhJ08jqDq2khuAK4KXR7eSo6TuwwiMA"}
+  //     onPlaceSelected={(place) => console.log(place)}
+  //   />
+  // );
   return (
     <>
       <div className="bg_secondary_color">
