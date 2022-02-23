@@ -12,6 +12,7 @@ export default class ShopItemDTO {
     images: string[] = [];
     description: string;
     information: ShopItemInformationDTO[] = [];
+    aa = new ShopItemInformationDTO({key: "1", value: ""});
 }
 
 
