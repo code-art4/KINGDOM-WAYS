@@ -5,12 +5,12 @@ import { NavMenu } from '../navbar';
 export default function AltHomePageHeader() {
     
     useEffect(() => {
-        autoCloseDrawer();
+        autoCloseDrawer();             
       }, []);
-    
+      
     const autoCloseDrawer = (toggleId='nav-toggle',navId='nav-menu') => {
     const toggle = document.getElementById(toggleId), nav = document.getElementById(navId);
-    nav.classList.toggle('show-menu');
+    // nav.classList.toggle('show-menu');
     }
     
     const showMenu =(toggleId, navId) =>{
@@ -22,8 +22,8 @@ export default function AltHomePageHeader() {
     }
 
     const onClickMenu = () => {
-    showMenu('nav-toggle','nav-menu');
-    document.getElementById("nav-toggle").classList.toggle("change");
+        showMenu('nav-toggle','nav-menu');
+         document.getElementById("nav-toggle").classList.toggle("change");
     }
 
     return (

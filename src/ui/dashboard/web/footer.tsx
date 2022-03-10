@@ -1,8 +1,20 @@
+import React, { useState, useEffect } from "react";
 import Head from 'next/head'
 import Image from 'next/image'
+import { LiveStreamController } from "../../../controller/admin/livestream.controller";
+import { LiveStreamDTO } from "../../../dto/LiveStream.dto";
 
 
 export default function HomePageFooter() {
+const _tmp: LiveStreamDTO[] = [];
+const [items, setItems] = useState(_tmp);
+    
+    useEffect(() => {
+        controller.list(setItems);
+    }, []);
+
+
+    const controller: LiveStreamController = new LiveStreamController();
   return (
     <footer className="footer_container">
             <div className="footer_col col_address">
@@ -47,18 +59,16 @@ export default function HomePageFooter() {
                     <h4 className="section_title">Up coming Events</h4>
                 </div>
 
-                <div className="contact_col">
-                <h4>Weeding</h4>
-                <span className="contact_span">July 7 @ 8:00 am - 10:30 am</span>
-                </div>
-                <div className="contact_col">
-                    <h4>Weeding</h4>
-                    <span className="contact_span">July 7 @ 8:00 am - 10:30 am</span>
-                </div>
-                <div className="contact_col">
-                    <h4>Weeding</h4>
-                    <span className="contact_span">July 7 @ 8:00 am - 10:30 am</span>
-                </div>
+                 {    
+                     items.length > 0 ? items.slice(0, 3).map((x, index) => {
+                             return (
+                                 <div className="contact_col" key={index}>
+                                     <h4>{x.title}</h4>
+                                     <span className="contact_span">July 7 @ 8:00 am - 10:30 am</span>
+                                 </div>
+                                 );                             
+                        }) : undefined
+                }
             </div>
 
             <div className="footer_col">
