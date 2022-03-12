@@ -28,7 +28,7 @@ export default function HomePage() {
   // );
   return (
     <>
-      <div className="bg_secondary_color">
+      <div className="bg_secondary_color" style={{height: "12rem"}}>
         <Head>
           <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
           <link href="/styles/css/style.css" rel="stylesheet" />
@@ -36,10 +36,10 @@ export default function HomePage() {
           <link href="/icofont/icofont/fontawesome-all.min" rel="stylesheet" />
           
         </Head>
+            <AltHomePageHeader />
         {/* <Header /> */}
-        <AltHomePageHeader />
         <div className="main_container home-container">
-          <HeroBanner />
+          <HeroBanner/>
           <HomeTimer />
           <HomeServiceArea />
           <HomeAboutArea />
